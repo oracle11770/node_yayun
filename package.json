@@ -1,0 +1,23 @@
+{
+  "name": "node_yayun",
+  "version": "1.0.0",
+  "description": "押韵",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oracle11770/node_yayun.git"
+  },
+  "author": "yxy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oracle11770/node_yayun/issues"
+  },
+  "homepage": "https://github.com/oracle11770/node_yayun#readme",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4"
+  }
+}
