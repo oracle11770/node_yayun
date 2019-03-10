@@ -1,0 +1,68 @@
+input {
+    border: 0;
+    padding: 0;
+}
+
+.yayun-content{
+    min-width:300px;
+    max-height: 200px;
+    position:absolute;
+    left:50%;    /* 定位父级的50% */
+    top:30%;
+    transform: translate(-50%,-50%);
+}
+.index-logo-srcnew {
+    display: none;
+}
+.s_ipt_wr {
+    height: 34px;
+    border: 1px solid #b6b6b6;
+    background: #fff;
+    display: inline-block;
+    vertical-align: top;
+    width: 539px;
+    margin-right: 0;
+    border-right-width: 0;
+}
+#kw {
+    width: 500px;
+    height: 22px;
+    font: 16px/18px arial;
+    line-height: 22px;
+    margin: 6px 0 0 7px;
+    padding: 0;
+    background: transparent;
+    border:0;
+    outline: 0;
+    -webkit-appearance: none;
+}
+@media (-webkit-min-device-pixel-ratio: 2),
+(min--moz-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2),
+(min-device-pixel-ratio: 2) {
+    .index-logo-src {
+        display: none;
+    }
+    .index-logo-srcnew {
+        display: inline;
+    }
+}
+
+#lg{
+    text-align: center;
+    vertical-align: middle;
+}
+.s_btn {
+    margin-left:-20px;
+    width: 100px;
+    height: 36px;
+    color: #fff;
+    font-size: 15px;
+    letter-spacing: 1px;
+    background: #3385ff;
+    border-bottom: 1px solid #2d78f4;
+    outline: medium;
+    *border-bottom: 0;
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
+}
