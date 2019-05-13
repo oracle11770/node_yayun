@@ -66,7 +66,7 @@ input{border:0;padding:0;}
 .s_btn {
     margin-left:-20px;
     width: 100px;
-    height: 36px;
+    height: 34px !important;
     color: #fff;
     font-size: 15px;
     letter-spacing: 1px;

@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <title>押韵</title>
     <link rel="stylesheet"  href="/css/style.css"/>
-    <script src="/js/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet"  href="/css/index.css"/>
+    <script src="/js/libs/jquery-1.11.3.min.js"></script>
 </head>
 <body>
     <div >
@@ -13,34 +14,66 @@
             <span class="bg s_ipt_wr quickdelete-wrap">
                 <input id="kw" name="word" class="s_ipt" value="<%= body %>" maxlength="255" autocomplete="off">
             </span>
-            <span class="bg s_btn_wr" id="yayunID">
+            <span class="bg s_btn_wr" id="yayunID2">
                 <!-- <input type="button"  value=""> -->
                 <img src="/image/51query.jpg" alt=""  class="bg s_btn">
             </span>
         </div>
+        <div class="yayuntab">
+            <span>
+                <a class="taba" href="">字</a>
+            </span>
+            <span>
+                <a class="taba" href="">词</a>
+            </span>
+            <span>
+                <a class="taba" href="">句</a>
+            </span>
+        </div>
        <div class="resCls">
-            <%= data %>
+            <div id="queryName">
+                <a target='_blank' href="https://www.baidu.com/s?wd=<%- data[0] %>" >
+                    <em><%= data[0] %></em>
+                </a>
+            </div>
+            <div id="queryCnt">
+                <%= data %>
+            </div>
        </div>
     </div>
 </body>
 <script>
-        $('#kw').bind('keypress',function(event){  
-            if(event.keyCode == "13"){
-                $('#yayunID').click();
-            }  
-        });  
-        $('#yayunID').click(function(){
-            $.ajax({
-                type: "get",
-                url: '/query',
-                dataType:'json',
-                cache: false,
-                data: {word: $('#kw').val(),isRender:false},
-                success:function(data) {
-                    console.log('------',data.data)
-                   $('.resCls').html(data.data)
+    $(function(){ 
+        $('#kw').keydown(function(e){
+            var timer = ''
+            if(e.keyCode === 13){
+                $('#yayunID2').click()
+            }else{
+                if(timer){
+                    clearTimeout(timer)
                 }
-            })
+                timer = setTimeout(function(){
+                    $('#yayunID2').click()
+                },200)
+            }
+        });  
+        $('#yayunID2').click(function(){
+            var word = $('#kw').val()
+            if(word){
+                word = word.split('')[word.length-1]
+                $.ajax({
+                    type: "get",
+                    url: '/query',
+                    dataType:'json',
+                    cache: false,
+                    data: {word: word,isRender:false},
+                    success:function(data) {
+                        $('#queryName a').attr('href', 'https://www.baidu.com/s?wd='+word)
+                        $('#queryCnt').html(data.data)
+                    }
+                })
+            }
         })
+    })
 </script>
 </html>
