@@ -11,10 +11,16 @@ router.get("/query", async function (req, res) {
     // req.query.word = urlencode(req.query.word)
     const isRender = req.query.isRender === 'false' ? true : false
     delete req.query.isRender
-    const resultData = await indexObj.getQueryResult(req.query)
-    console.log(resultData,'=========='); 
+    let resultData = {}
+    if(req.query.source && 
+        (req.query.source === 'tang' || req.query.source === "song" || req.query.source === "yuan")){
+        resultData = await indexObj.getQueryVerse(req.query)
+    }else{
+        resultData = await indexObj.getQueryResult(req.query)
+    }
+    console.log(resultData,'==========',req.query); 
     if(isRender){
-        console.log(99999999999,resultData)
+        // console.log(99999999999,resultData)
         await res.send({
             queryName: req.query.word,
             data: resultData,
@@ -22,6 +28,7 @@ router.get("/query", async function (req, res) {
     }else{
         await res.render('response.ejs',{
             data: resultData,
+            queryName: req.query.word,
             body: req.query.word
         });
     }

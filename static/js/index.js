@@ -3,7 +3,7 @@ $(function(){
         return false
     }
     $('#yayunLogo img').click(function(e){
-        window.location.href = 'https://www.baidu.com/s?wd='+encodeURI('母亲节')
+        window.location.href = 'https://www.baidu.com/s?wd='+encodeURI('今日新鲜事')
     })
     $('#yayun_query').focus(function(e){
         $('#yayun_query').css('border-color', '#2d78f4')
@@ -27,7 +27,7 @@ $(function(){
     $('#yayunID').click(function(e){
         var word = $('#yayun_query').val()
         if(word){
-            window.location.href = '/query?word=' + word.split('')[word.length-1]
+            window.location.href = '/query?word=' + word
         }
     })
 })

@@ -21,23 +21,29 @@
         </div>
         <div class="yayuntab">
             <span>
-                <a class="taba" href="">字</a>
+                <a id="wordId" class="taba curspan" href="javascript:void(0)" data-val=''>字</a>
             </span>
             <span>
-                <a class="taba" href="">词</a>
+                <a id="wordIdwords" class="taba" href="javascript:void(0)" data-val='words'>词</a>
             </span>
             <span>
-                <a class="taba" href="">句</a>
+                <a id="wordIdtang" class="taba" href="javascript:void(0)" data-val='tang'>唐诗</a>
+            </span>
+            <span>
+                <a id="wordIdsong" class="taba" href="javascript:void(0)" data-val='song'>宋词</a>
+            </span>
+            <span>
+                <a id="wordIdyuan" class="taba" href="javascript:void(0)" data-val='yuan'>元曲</a>
             </span>
         </div>
        <div class="resCls">
             <div id="queryName">
                 <a target='_blank' href="https://www.baidu.com/s?wd=<%- data[0] %>" >
-                    <em><%= data[0] %></em>
+                    <em><%= queryName %></em>
                 </a>
             </div>
             <div id="queryCnt">
-                <%= data %>
+                <%= data.join('') %>
             </div>
        </div>
     </div>
@@ -57,19 +63,46 @@
                 },200)
             }
         });  
+        var source = ''
+        $('.taba').click(function(e){
+            e.stopPropagation()
+            $('#wordId'+source).removeClass('curspan')
+            source = $(this).data('val')
+            $(this).toggleClass('curspan')
+            $('#yayunID2').click()
+        })
         $('#yayunID2').click(function(){
             var word = $('#kw').val()
             if(word){
-                word = word.split('')[word.length-1]
+                // word = word.split('')[word.length-1]
                 $.ajax({
                     type: "get",
                     url: '/query',
                     dataType:'json',
                     cache: false,
-                    data: {word: word,isRender:false},
+                    data: {
+                        word: word,
+                        source: (source === 'words' ? '' : source),
+                        isRender:false
+                    },
                     success:function(data) {
                         $('#queryName a').attr('href', 'https://www.baidu.com/s?wd='+word)
-                        $('#queryCnt').html(data.data)
+                        $('#queryName em').text(word)
+                        if(data.data && data.data.total){
+                            var html = []
+                            data.data.body = data.data.body.slice(0,50)
+                            data.data.body.forEach(function(item){
+                                var body = item.body.split('。').join('。<br/>')
+                                html.push(`<div class='verDiv'>
+                                        <p>${item.title}</p>
+                                        <p>作者：&nbsp;${item.author}</p>
+                                        <p>${body}</p>
+                                    </div>`)
+                            });
+                            $('#queryCnt').html(html.join(''))
+                        }else{
+                            $('#queryCnt').html(data.data)
+                        }
                     }
                 })
             }
