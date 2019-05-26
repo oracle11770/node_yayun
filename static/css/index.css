@@ -1,8 +1,12 @@
-html{overflow-y:auto}
-body{font:12px arial;background:#fff}
-body,p,form,ul,li{margin:0;padding:0;list-style:none}
-.clearfix:after,
-.clearfix:before {
+body{
+    font:12px arial;
+    background:#fff;
+    font-family: Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,\\5FAE\8F6F\96C5\9ED1,Arial,sans-serif;
+}
+body,p,form,ul,li{margin:0;padding:0;list-style:none;}
+
+
+.clearfix:after,.clearfix:before {
   content: "";
   display: table;
 }
@@ -17,7 +21,9 @@ body {
     height: 100%;
     cursor: default;
 }
-
+body .index-logo-src img{
+    display: none;
+}
 .yayunbox{
     height: 100%;
 }
@@ -44,18 +50,6 @@ body {
     cursor: pointer;
 }
 
-#yayun_query {
-    width: 521px;
-    height: 20px;
-    padding: 9px 7px;
-    font: 16px arial;
-    border: 1px solid #b8b8b8;
-    border-bottom: 1px solid #ccc;
-    border-right: 0;
-    vertical-align: top;
-    outline: none;
-    box-shadow: none;
-}
 #yayun_query:hover{
     border-top: 1px solid #999 !important;
     border-left: 1px solid #999 !important;
@@ -99,9 +93,6 @@ body {
     border-top:1px solid #f8f8f8;
     background:#f8f8f8;
 }
-.yayuntab span:first-child(1){
-    margin-left:120px;
-}
 .curspan{
     border-bottom: 2px solid #38f;
     font-weight: 700;
@@ -135,11 +126,6 @@ body {
     color: #666;
     font-size: 14px;
 }
-.yayuntab span:nth-child(1){
-    text-align: left !important;
-    padding-right: 10px;
-    margin-left:120px;
-}
 .yayuntab span{
     text-align: center;
     padding: 0px 10px;
@@ -156,11 +142,29 @@ body {
     margin-bottom: 50px;
     font-size: 14px;
 }
+
+.subQuery{margin-left:10px;margin-top:10px;}
+.s_btn {
+    margin-left:-20px;
+    width: 100px;
+    border: 1px solid #2d78f4;
+    -webkit-appearance: none;
+    height: 34px !important;
+    color: #fff;
+    font-size: 15px;
+    letter-spacing: 1px;
+    background: #3385ff;
+    outline: medium;
+    *border-bottom: 0;
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
+    cursor: pointer;
+}
 /*大屏幕*/
 @media screen and (min-width: 1200px) {
-    /* body {
-        background-color: brown;
-    } */
+    body .index-logo-src img{
+        display: inline-block;
+    }
     .yayunCnt{
         position: relative;
         width: 641px;
@@ -182,14 +186,57 @@ body {
         margin-left:120px;
         margin-top:11px;
     }
+    #yayun_query {
+        width: 521px;
+        height: 20px;
+        padding: 9px 7px;
+        font: 16px arial;
+        border: 1px solid #b8b8b8;
+        border-bottom: 1px solid #ccc;
+        border-right: 0;
+        vertical-align: top;
+        outline: none;
+        box-shadow: none;
+    }
+    .fm span{
+        float: left;
+    }
+    .index-logo-srcnew {
+        display: none;
+    }
+    .s_ipt_wr {
+        height: 34px;
+        border: 1px solid #b6b6b6;
+        background: #fff;
+        display: inline-block;
+        vertical-align: top;
+        width: 539px;
+        margin-right: 0;
+        border-right-width: 0;
+    }
+    #kw {
+        width: 500px;
+        height: 22px;
+        font: 16px/18px arial;
+        line-height: 22px;
+        margin: 6px 0 0 7px;
+        padding: 0;
+        background: transparent;
+        border:0;
+        outline: 0;
+        -webkit-appearance: none;
+    }
+    .yayuntab span:nth-child(1){
+        margin-left:120px;
+    }
 }
 /*平板电脑与小屏电脑之间的分辨率*/
-@media screen and (min-width: 768px) and (max-width:979px) {
+@media screen and (min-width: 768px) and (max-width:1199px) {
     .yayunCnt{
         position: relative;
         width: 641px;
         height: 100%;
-        min-height: 750px;
+        min-height: 520px;
         margin: 0 auto 0 auto;
     }
     .logoImg{
@@ -201,6 +248,56 @@ body {
     .frm{
         position: absolute;
         bottom: 0;
+    }
+    .index-logo-srcnew {
+        display: none;
+    }
+    #yayun_query {
+        width: 521px;
+        height: 20px;
+        padding: 9px 7px;
+        font: 16px arial;
+        border: 1px solid #b8b8b8;
+        border-bottom: 1px solid #ccc;
+        border-right: 0;
+        vertical-align: top;
+        outline: none;
+        box-shadow: none;
+    }
+    .fm span{
+        float: left;
+    }
+    .index-logo-srcnew {
+        display: none;
+    }
+    .s_ipt_wr {
+        height: 34px;
+        border: 1px solid #b6b6b6;
+        background: #fff;
+        display: inline-block;
+        vertical-align: top;
+        width: 539px;
+        margin-right: 0;
+        border-right-width: 0;
+    }
+    #kw {
+        width: 500px;
+        height: 22px;
+        font: 16px/18px arial;
+        line-height: 22px;
+        margin: 6px 0 0 7px;
+        padding: 0;
+        background: transparent;
+        border:0;
+        outline: 0;
+        -webkit-appearance: none;
+    }
+    .yayuntab span:nth-child(1){
+        margin-left:120px;
+    }
+    .resCls{
+        margin-top: 20px;
+        margin-left:120px;
     }
 }
 /*横向放置的手机和竖向放置的平板之间的分辨率*/
@@ -209,7 +306,7 @@ body {
         position: relative;
         width: 641px;
         height: 100%;
-        min-height: 750px;
+        min-height: 520px;
         margin: 0 auto 0 auto;
     }
     .logoImg{
@@ -221,6 +318,50 @@ body {
     .frm{
         position: absolute;
         bottom: 0;
+    }
+    #yayun_query {
+        width: 521px;
+        height: 20px;
+        padding: 9px 7px;
+        font: 16px arial;
+        border: 1px solid #b8b8b8;
+        border-bottom: 1px solid #ccc;
+        border-right: 0;
+        vertical-align: top;
+        outline: none;
+        box-shadow: none;
+    }
+    .fm span{
+        float: left;
+    }
+    .index-logo-srcnew {
+        display: none;
+    }
+    .s_ipt_wr {
+        height: 34px;
+        border: 1px solid #b6b6b6;
+        background: #fff;
+        display: inline-block;
+        vertical-align: top;
+        width: 539px;
+        margin-right: 0;
+        border-right-width: 0;
+    }
+    #kw {
+        width: 500px;
+        height: 22px;
+        font: 16px/18px arial;
+        line-height: 22px;
+        margin: 6px 0 0 7px;
+        padding: 0;
+        background: transparent;
+        border:0;
+        outline: 0;
+        -webkit-appearance: none;
+    }
+    .resCls{
+        margin-top: 10px;
+        margin-left:20px;
     }
 }
 
@@ -230,7 +371,7 @@ body {
         position: relative;
         width: 641px;
         height: 100%;
-        min-height: 750px;
+        min-height: 520px;
         margin: 0 auto 0 auto;
     }
     .logoImg{
@@ -242,5 +383,66 @@ body {
     .frm{
         position: absolute;
         bottom: 0;
+        left: 50%;
+        transform: translate(-52.5%,0);
+        display: flex;
+    }
+    .index-logo-srcnew {
+        display: none;
+    }
+    #yayun_query {
+        width: 421px;
+        height: 20px;
+        padding: 9px 7px;
+        font: 16px arial;
+        border: 1px solid #b8b8b8;
+        border-bottom: 1px solid #ccc;
+        border-right: 0;
+        vertical-align: top;
+        outline: none;
+        box-shadow: none;
+        margin-left:auto;
+        margin-right:auto;
+    }
+    .input-sp{
+        width:439px;
+    }
+    .fm span{
+        float: left;
+    }
+    .s_ipt_wr {
+        height: 34px;
+        border: 1px solid #b6b6b6;
+        background: #fff;
+        display: inline-block;
+        vertical-align: top;
+        width: 218px;
+        margin-right: 0;
+        border-right-width: 0;
+    }
+    #kw {
+        width: 196px;
+        height: 22px;
+        font: 16px/18px arial;
+        line-height: 22px;
+        margin: 6px 0 0 7px;
+        padding: 0;
+        background: transparent;
+        border:0;
+        outline: 0;
+        -webkit-appearance: none;
+    }
+    .yayuntab span:first-child(1){
+        margin-left:20px;
+    }
+    .resCls{
+        margin-top: 10px;
+        margin-left:20px;
+    }
+    .resCls a{
+        min-width: 42px;
+    }
+    .taba {
+        width: 42px;
     }
 }
