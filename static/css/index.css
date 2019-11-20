@@ -193,6 +193,9 @@ body .index-logo-src img{
     vertical-align: middle;
     margin-top: -4px;
 }
+.page{
+    display: none;
+}
 /*大屏幕*/
 @media screen and (min-width: 1200px) {
     body .index-logo-src img{
@@ -261,6 +264,20 @@ body .index-logo-src img{
     }
     .yayuntab span:nth-child(1){
         margin-left:120px;
+    }
+    .page{
+        display: block;
+    }
+    .page a{
+        display: inline-block;
+        vertical-align: text-bottom;
+        height: 66px;
+        text-align: center;
+        line-height: 34px;
+        text-decoration: none;
+        overflow: hidden;
+        margin-right: 9px;
+        background: #fff;
     }
 }
 /*平板电脑与小屏电脑之间的分辨率*/

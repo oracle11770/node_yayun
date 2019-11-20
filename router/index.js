@@ -28,6 +28,7 @@ router.get("/query", async function (req, res) {
     }else{
         await res.render('response.ejs',{
             data: resultData,
+            total: resultData.length,
             queryName: req.query.word,
             body: req.query.word
         });

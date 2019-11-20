@@ -45,6 +45,11 @@
             <div id="queryCnt">
                 <%= data.join('') %>
             </div>
+            <div class="page">
+                <%for(let yi = 0; yi < data.length%10; yi++){%>
+                <a href=""><%= yi %></a>
+                <%}%>
+            </div>
        </div>
     </div>
 </body>
