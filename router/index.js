@@ -20,27 +20,36 @@ router.get("/query", async function (req, res) {
     }
     console.log(resultData,'==========',req.query); 
     let curi = 0
-    let total = resultData.total
+    let total = resultData.data.total
     let fromi = req.query.fromi
     if (fromi < total) {
         curi = fromi > 6 ? (fromi - 6) : curi
     } else {
         curi = total - total % 10
     }
+    var html = []
+    resultData.data.body.forEach(function (item) {
+        var body = item.body.split('。').join('。<br/>')
+        html.push(`<div class='verDiv'>
+                <p>${item.title}</p>
+                <p>作者：&nbsp;${item.author}</p>
+                <p>${body}</p>
+        </div>`)
+    });
     if(isRender){
         // console.log(99999999999,resultData)
         console.log('=======99999999999', isRender, JSON.stringify(resultData))
         await res.send({
             queryName: req.query.word,
-            data: resultData,
-            total: resultData.total,
+            data: html,
+            total,
             curi
         })
     }else{
         console.log('=======', isRender, JSON.stringify(resultData))
         await res.render('response.ejs',{
-            data: resultData,
-            total: resultData.total,
+            data: html,
+            total,
             curi,
             queryName: req.query.word,
             body: req.query.word

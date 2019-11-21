@@ -77,38 +77,39 @@
         $('#yayunID2').click(function(){
             var word = $('#kw').val()
             if(word){
+                window.location.href = '/query?word=' + word
                 // word = word.split('')[word.length-1]
-                $.ajax({
-                    type: "get",
-                    url: '/query',
-                    dataType:'json',
-                    cache: false,
-                    data: {
-                        word: word,
-                        source: (source === 'words' ? '' : source),
-                        fromi: 1,
-                        isRender:false
-                    },
-                    success:function(data) {
-                        $('#queryName a').attr('href', 'https://www.baidu.com/s?wd='+word)
-                        $('#queryName em').text(word)
-                        if(data.data && data.data.total){
-                            var html = []
-                            data.data.body = data.data.body.slice(0,50)
-                            data.data.body.forEach(function(item){
-                                var body = item.body.split('。').join('。<br/>')
-                                html.push(`<div class='verDiv'>
-                                        <p>${item.title}</p>
-                                        <p>作者：&nbsp;${item.author}</p>
-                                        <p>${body}</p>
-                                    </div>`)
-                            });
-                            $('#queryCnt').html(html.join(''))
-                        }else{
-                            $('#queryCnt').html(data.data)
-                        }
-                    }
-                })
+                // $.ajax({
+                //     type: "get",
+                //     url: '/query',
+                //     dataType:'json',
+                //     cache: false,
+                //     data: {
+                //         word: word,
+                //         source: (source === 'words' ? '' : source),
+                //         fromi: 1,
+                //         isRender:false
+                //     },
+                //     success:function(data) {
+                //         $('#queryName a').attr('href', 'https://www.baidu.com/s?wd='+word)
+                //         $('#queryName em').text(word)
+                //         if(data.data && data.data.total){
+                //             var html = []
+                //             data.data.body = data.data.body.slice(0,50)
+                //             data.data.body.forEach(function(item){
+                //                 var body = item.body.split('。').join('。<br/>')
+                //                 html.push(`<div class='verDiv'>
+                //                         <p>${item.title}</p>
+                //                         <p>作者：&nbsp;${item.author}</p>
+                //                         <p>${body}</p>
+                //                     </div>`)
+                //             });
+                //             $('#queryCnt').html(html.join(''))
+                //         }else{
+                //             $('#queryCnt').html(data.data)
+                //         }
+                //     }
+                // })
             }
         })
     })
