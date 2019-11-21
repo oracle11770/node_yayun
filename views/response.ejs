@@ -76,7 +76,7 @@
         $('#yayunID2').click(function(){
             var word = $('#kw').val()
             if(word){
-                window.location.href = '/query?word=' + word
+                window.location.href = '/query?word=' + word + '&source=' + (source === 'words' ? '' : source) + '&fromi=' +  1
                 // word = word.split('')[word.length-1]
                 // $.ajax({
                 //     type: "get",
