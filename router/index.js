@@ -19,17 +19,17 @@ router.get("/query", async function (req, res) {
         resultData = await indexObj.getQueryResult(req.query)
     }
     console.log(resultData,'==========',req.query); 
+    let curi = 0
+    let total = resultData.total
+    let fromi = req.query.fromi
+    if (fromi < total) {
+        curi = fromi > 6 ? (fromi - 6) : curi
+    } else {
+        curi = total - total % 10
+    }
     if(isRender){
         // console.log(99999999999,resultData)
         console.log('=======99999999999', isRender, JSON.stringify(resultData))
-        let curi = 0
-        let total = resultData.total
-        let fromi = req.query.fromi
-        if (fromi < total){
-            curi = fromi > 6 ? (fromi - 6) : curi
-        }else{
-            curi = total - total%10
-        }
         await res.send({
             queryName: req.query.word,
             data: resultData,
@@ -41,6 +41,7 @@ router.get("/query", async function (req, res) {
         await res.render('response.ejs',{
             data: resultData,
             total: resultData.total,
+            curi,
             queryName: req.query.word,
             body: req.query.word
         });

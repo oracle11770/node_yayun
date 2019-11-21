@@ -46,7 +46,7 @@
             <div id="queryCnt">
                 <%= data.join('') %>
             </div>
-            <%for(let yi = 0; yi < data.length%10; yi++){%>
+            <%if(total){%>
             <div class="page">
                 <%for(let yi = curi; yi < 10; yi++){%>
                 <a href=""><%= yi %></a>
