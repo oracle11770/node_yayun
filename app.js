@@ -18,6 +18,11 @@ app.use('/',express.static(path.join(__dirname, './static')));
 
 
 app.use(async function(req, res, next) {
+    console.log(req.url,'==========')
+    if (req.url === "/favicon.ico") {
+        res.end();
+        return;
+    }
     await next()
 })
 

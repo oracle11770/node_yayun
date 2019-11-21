@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>押韵</title>
-    <link rel="shortcut icon" href="/image/favicon.png">
+    <link rel="icon" href="favicon.png">
     <link rel="stylesheet"  href="/css/index.css"/>
     <script src="/js/libs/jquery-1.11.3.min.js"></script>
 </head>
@@ -46,11 +46,13 @@
             <div id="queryCnt">
                 <%= data.join('') %>
             </div>
+            <%for(let yi = 0; yi < data.length%10; yi++){%>
             <div class="page">
-                <%for(let yi = 0; yi < data.length%10; yi++){%>
+                <%for(let yi = curi; yi < 10; yi++){%>
                 <a href=""><%= yi %></a>
                 <%}%>
             </div>
+            <%}%>
        </div>
     </div>
 </body>

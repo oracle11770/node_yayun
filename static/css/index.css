@@ -271,13 +271,20 @@ body .index-logo-src img{
     .page a{
         display: inline-block;
         vertical-align: text-bottom;
-        height: 66px;
+        width: 34px;
+        height: 34px;
+        border: 1px solid #e1e2e3;
+        cursor: pointer;
         text-align: center;
         line-height: 34px;
         text-decoration: none;
         overflow: hidden;
         margin-right: 9px;
         background: #fff;
+    }
+    .page a:hover{
+        border: 1px solid #0000d6 !important;
+        background: #d4d4fb;
     }
 }
 /*平板电脑与小屏电脑之间的分辨率*/

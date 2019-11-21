@@ -21,14 +21,26 @@ router.get("/query", async function (req, res) {
     console.log(resultData,'==========',req.query); 
     if(isRender){
         // console.log(99999999999,resultData)
+        console.log('=======99999999999', isRender, JSON.stringify(resultData))
+        let curi = 0
+        let total = resultData.total
+        let fromi = req.query.fromi
+        if (fromi < total){
+            curi = fromi > 6 ? (fromi - 6) : curi
+        }else{
+            curi = total - total%10
+        }
         await res.send({
             queryName: req.query.word,
             data: resultData,
+            total: resultData.total,
+            curi
         })
     }else{
+        console.log('=======', isRender, JSON.stringify(resultData))
         await res.render('response.ejs',{
             data: resultData,
-            total: resultData.length,
+            total: resultData.total,
             queryName: req.query.word,
             body: req.query.word
         });

@@ -1,5 +1,5 @@
 var axios = require('axios')
-var api = 'http://api.rhyme.com'
+var api = 'https://51rhyme.com'
 module.exports = {
     getQueryResult: async (params) => {
         let data = ''
@@ -21,6 +21,7 @@ module.exports = {
             // console.log('res.status',res.status, typeof res.status)
             if (res.status === 200) {
                 data = res.data
+                console.log('服务器响应的值====',res)
             }
         }).catch((err) => {
             console.log('----------------',err)
