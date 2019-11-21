@@ -22,19 +22,19 @@
         </div>
         <div class="yayuntab">
             <span>
-                <a id="wordId" class="taba curspan" href="javascript:void(0)" data-val=''>字</a>
+                <a id="wordId" class="<%source=='' ? 'taba curspan' : 'taba' %>" href="javascript:void(0)" data-val=''>字</a>
             </span>
             <span>
-                <a id="wordIdwords" class="taba" href="javascript:void(0)" data-val='words'>词</a>
+                <a id="wordIdwords" class="<%= source=='words' ? 'taba curspan' : 'taba' %>" href="javascript:void(0)" data-val='words'>词</a>
             </span>
             <span>
-                <a id="wordIdtang" class="taba" href="javascript:void(0)" data-val='tang'>唐诗</a>
+                <a id="wordIdtang" class="<%source=='tang' ? 'taba curspan' : 'taba' %>" href="javascript:void(0)" data-val='tang'>唐诗</a>
             </span>
             <span>
-                <a id="wordIdsong" class="taba" href="javascript:void(0)" data-val='song'>宋词</a>
+                <a id="wordIdsong" class="<%source=='song' ? 'taba curspan' : 'taba' %>" href="javascript:void(0)" data-val='song'>宋词</a>
             </span>
             <span>
-                <a id="wordIdyuan" class="taba" href="javascript:void(0)" data-val='yuan'>元曲</a>
+                <a id="wordIdyuan" class="<%source=='yuan' ? 'taba curspan' : 'taba' %>" href="javascript:void(0)" data-val='yuan'>元曲</a>
             </span>
         </div>
        <div class="resCls">

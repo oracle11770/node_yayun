@@ -42,6 +42,7 @@ router.get("/query", async function (req, res) {
         await res.send({
             queryName: req.query.word,
             data: html,
+            source: req.query.source,
             total,
             curi
         })
@@ -49,6 +50,7 @@ router.get("/query", async function (req, res) {
         console.log('=======', isRender, JSON.stringify(resultData))
         await res.render('response.ejs',{
             data: html,
+            source: req.query.source,
             total,
             curi,
             queryName: req.query.word,
