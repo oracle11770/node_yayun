@@ -27,7 +27,7 @@ $(function(){
     $('#yayunID').click(function(e){
         var word = $('#yayun_query').val()
         if(word){
-            window.location.href = '/query?word=' + word
+            window.location.href = '/query?word=' + word + '&source=word'
         }
     })
 })
