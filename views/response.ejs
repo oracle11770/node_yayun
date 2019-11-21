@@ -51,8 +51,6 @@
     </div>
 </body>
 <script>
-    var source = "<%=source%>"
-
     $(function(){ 
         $('#kw').keydown(function(e){
             var timer = ''
@@ -73,6 +71,7 @@
             $('#queryName a').attr('href', 'https://www.baidu.com/s?wd=' + resWord)
             $('#queryName em').text(resWord)
         }
+         var source = ""
         $('.taba').click(function(e){
             e.stopPropagation()
             $('#wordId'+source).removeClass('curspan')
