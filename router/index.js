@@ -20,7 +20,7 @@ router.get("/query", async function (req, res) {
     if (source && 
         (source === 'tang' || source === "song" || source === "yuan")){
         resultData = await indexObj.getQueryVerse(req.query)
-        resultData = resultData.data
+        // resultData = resultData.data
         total = resultData.total
         let fromi = req.query.fromi
         if (fromi < total) {
@@ -35,7 +35,7 @@ router.get("/query", async function (req, res) {
     }else{
         delete req.query.source
         resultData = await indexObj.getQueryResult(req.query)
-        html = resultData.data;
+        html = resultData;
     }
     console.log(resultData,'==========',req.query); 
   
