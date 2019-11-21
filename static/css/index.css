@@ -267,6 +267,7 @@ body .index-logo-src img{
     }
     .page{
         display: block;
+        margin-left:120px;
     }
     .page a{
         display: inline-block;
