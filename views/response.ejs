@@ -46,13 +46,14 @@
             <div id="queryCnt">
                 <%= data.join('') %>
             </div>
-            <%if(total){%>
+            <% if (total){ %>
             <div class="page">
-                <%for(let yi = curi; yi < 10; yi++){%>
+                <% for(let yi = curi; yi < 10; yi++){ %>
                 <a href=""><%= yi %></a>
-                <%}%>
+                <% } %>
             </div>
-            <%}%>
+            <% } %>
+            <div><%= total %></div>
        </div>
     </div>
 </body>
@@ -91,6 +92,7 @@
                     data: {
                         word: word,
                         source: (source === 'words' ? '' : source),
+                        fromi: 1,
                         isRender:false
                     },
                     success:function(data) {
