@@ -22,7 +22,7 @@
         </div>
         <div class="yayuntab">
             <span>
-                <a id="wordIdword" class="taba curspan" href="javascript:void(0)" data-val='word'>字</a>
+                <a id="wordIdword" class="taba" href="javascript:void(0)" data-val='word'>字</a>
             </span>
             <span>
                 <a id="wordIdwords" class="taba" href="javascript:void(0)" data-val='words'>词</a>
@@ -71,7 +71,10 @@
             $('#queryName a').attr('href', 'https://www.baidu.com/s?wd=' + resWord)
             $('#queryName em').text(resWord)
         }
-         var source = ""
+         var source = "<%=source %>"
+         if(source){
+              $('#wordId' + source).toggleClass('curspan')
+         }
         $('.taba').click(function(e){
             e.stopPropagation()
             $('#wordId'+source).removeClass('curspan')
@@ -82,7 +85,7 @@
         $('#yayunID2').click(function(){
             var word = $('#kw').val()
             if(word){
-                window.location.href = '/query?word=' + word + '&source=' + (source === 'words' ? '' : source) + '&fromi=' +  1
+                window.location.href = '/query?word=' + word + '&source=' +  source + '&fromi=' +  1
                 // word = word.split('')[word.length-1]
                 // $.ajax({
                 //     type: "get",
