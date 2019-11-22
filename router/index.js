@@ -20,7 +20,7 @@ router.get("/query", async function (req, res) {
     if (source && 
         (source === 'tang' || source === "song" || source === "yuan")){
         resultData = await indexObj.getQueryVerse(req.query)
-        console.log('=====+++++++', JSON.stringify(resultData))
+        console.log('=====+++++++', resultData)
         resultData = resultData.data
         if (resultData && resultData.hasOwnProperty('total')){
             total = resultData.total
