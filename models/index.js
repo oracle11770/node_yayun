@@ -1,5 +1,5 @@
 var axios = require('axios')
-var api = 'http://api.rhyme.com'
+var api = 'http://api.51rhyme.com'
 module.exports = {
     getQueryResult: async (params) => {
         let data = ''
