@@ -21,16 +21,18 @@ router.get("/query", async function (req, res) {
         (source === 'tang' || source === "song" || source === "yuan")){
         resultData = await indexObj.getQueryVerse(req.query)
         resultData = resultData.data
-        total = resultData.total
-        let fromi = req.query.fromi
-        if (fromi < total) {
-            curi = fromi > 6 ? (fromi - 6) : curi
-        } else {
-            curi = total - total % 10
+        if (resultData && resultData.hasOwnProperty('total')){
+            total = resultData.total
+            let fromi = req.query.fromi
+            if (fromi < total) {
+                curi = fromi > 6 ? (fromi - 6) : curi
+            } else {
+                curi = total - total % 10
+            }
+           resultData.body.forEach(function (item) {
+                item.body = item.body.split('。')
+            });
         }
-       resultData.body.forEach(function (item) {
-            item.body = item.body.split('。')
-        });
         html = resultData.body
     }else{
         delete req.query.source
