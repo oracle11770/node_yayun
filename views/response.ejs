@@ -63,8 +63,9 @@
        </div>
         <% if (total){ %>
         <div class="page">
-            <% for(let yi = curi; yi < 11; yi++){ %>
+            <% for(let yi = curi,count=0; yi < 10; yi++){ %>
             <a href="javascript:void(0)" class="pageA" data-val="<%= yi %>"><%= yi %></a>
+            <% count++ %>
             <% } %>
         </div>
         <% } %>
