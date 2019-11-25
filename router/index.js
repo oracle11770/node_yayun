@@ -13,7 +13,8 @@ router.get("/query", async function (req, res) {
     const source = req.query.source
     delete req.query.isRender
     let resultData = {}
-    let curi = 1
+    let fromi = 1
+    let curi = 0
     let total = 0
     var html = []
 
@@ -23,12 +24,12 @@ router.get("/query", async function (req, res) {
         console.log('**************', resultData)
         let resData = Object.assign({}, resultData)
         if(JSON.stringify(resData) != "{}"){
-            total = resData.total
-            let fromi = req.query.fromi
-            if (fromi < total) {
-                curi = fromi > 6 ? (fromi - 6) : curi
+            total = Number(resData.total)
+            curi = Number(req.query.curi)
+            if (curi < total) {
+                fromi = curi > 6 ? (curi - 6) : fromi
             } else {
-                curi = total - total % 10
+                fromi = total - total % 10
             }
             resData.body.forEach(function (item) {
                 item.body = item.body.split('。')
@@ -42,8 +43,6 @@ router.get("/query", async function (req, res) {
         html = resultData;
     }
     console.log(html,'+_++++++++++++++++++',req.query); 
-  
-    
    
     if(isRender){
         // console.log(99999999999,resultData)
@@ -51,14 +50,16 @@ router.get("/query", async function (req, res) {
             queryName: req.query.word,
             resultData: resultData,
             data: html,
-            source: 'source' ,
+            source: source,
+            fromi,
             total,
             curi
         })
     }else{
         await res.render('response.ejs',{
             data: html,
-            source: source || "",
+            source: source,
+            fromi,
             total,
             curi,
             queryName: req.query.word,

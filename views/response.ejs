@@ -39,7 +39,7 @@
         </div>
        <div class="resCls">
             <div id="queryName">
-                <a target='_blank' href="https://www.baidu.com/s?wd=<%- data[0] %>" >
+                <a target='_blank' href="https://www.baidu.com/s?wd=<%- queryName %>" >
                     <em><%= queryName %></em>
                 </a>
             </div>
@@ -63,8 +63,8 @@
        </div>
         <% if (total){ %>
         <div class="page">
-            <% for(let yi = curi,count=0; count < 10; yi++){ %>
-            <a href="javascript:void(0)" class="pageA" data-val="<%= yi %>"><%= yi %></a>
+            <% for(let yi = fromi,count=0; count < 10; yi++){ %>
+            <a href="javascript:void(0)" class="<%= ((yi == curi) ? 'pageA cur-a' : 'pageA') %>" data-val="<%= yi %>"><%= yi %></a>
             <% count++ %>
             <% } %>
         </div>
@@ -105,48 +105,18 @@
         })
          $('.pageA').click(function (e) {
             e.stopPropagation()
-            const fromi = $(this).data('val')
+            $('.pageA').removeClass('cur-a')
+            $(this).toggleClass('cur-a')
+            const curi = $(this).data('val')
             var word = $('#kw').val()
             if(word){
-                window.location.href = '/query?word=' + word + '&source=' + source + '&fromi=' + fromi
+                window.location.href = '/query?word=' + word + '&source=' + source + '&curi=' + curi
             }
          })
         $('#yayunID2').click(function(){
             var word = $('#kw').val()
             if(word){
-                window.location.href = '/query?word=' + word + '&source=' +  source + '&fromi=' +  1
-                // word = word.split('')[word.length-1]
-                // $.ajax({
-                //     type: "get",
-                //     url: '/query',
-                //     dataType:'json',
-                //     cache: false,
-                //     data: {
-                //         word: word,
-                //         source: (source === 'words' ? '' : source),
-                //         fromi: 1,
-                //         isRender:false
-                //     },
-                //     success:function(data) {
-                //         $('#queryName a').attr('href', 'https://www.baidu.com/s?wd='+word)
-                //         $('#queryName em').text(word)
-                //         if(data.data && data.data.total){
-                //             var html = []
-                //             data.data.body = data.data.body.slice(0,50)
-                //             data.data.body.forEach(function(item){
-                //                 var body = item.body.split('。').join('。<br/>')
-                //                 html.push(`<div class='verDiv'>
-                //                         <p>${item.title}</p>
-                //                         <p>作者：&nbsp;${item.author}</p>
-                //                         <p>${body}</p>
-                //                     </div>`)
-                //             });
-                //             $('#queryCnt').html(html.join(''))
-                //         }else{
-                //             $('#queryCnt').html(data.data)
-                //         }
-                //     }
-                // })
+                window.location.href = '/query?word=' + word + '&source=' +  source + '&curi=' +  1
             }
         })
     })

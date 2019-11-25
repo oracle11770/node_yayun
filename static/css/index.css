@@ -287,6 +287,10 @@ body .index-logo-src img{
         border: 1px solid #0000d6 !important;
         background: #d4d4fb;
     }
+    .page .cur-a{
+        border: 1px solid #0000d6 !important;
+        background: #d4d4fb !important;
+    }
 }
 /*平板电脑与小屏电脑之间的分辨率*/
 @media screen and (min-width: 768px) and (max-width:1199px) {
