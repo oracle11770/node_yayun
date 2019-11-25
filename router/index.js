@@ -23,17 +23,17 @@ router.get("/query", async function (req, res) {
         console.log('**************', resultData)
         let resData = resultData
         if (resData && resData.hasOwnProperty('total')){
-            total = resData.total
-            let fromi = req.query.fromi
-            if (fromi < total) {
-                curi = fromi > 6 ? (fromi - 6) : curi
-            } else {
-                curi = total - total % 10
-            }
-            resData.body.forEach(function (item) {
-                item.body = item.body.split('。')
-            });
-            html = resData.body
+            // total = resData.total
+            // let fromi = req.query.fromi
+            // if (fromi < total) {
+            //     curi = fromi > 6 ? (fromi - 6) : curi
+            // } else {
+            //     curi = total - total % 10
+            // }
+            // resData.body.forEach(function (item) {
+            //     item.body = item.body.split('。')
+            // });
+            // html = resData.body
         }
     }else{
         delete req.query.source
@@ -52,7 +52,7 @@ router.get("/query", async function (req, res) {
             queryName: req.query.word,
             resultData: resultData,
             data: html,
-            source: source || "",
+            source: 'source' ,
             total,
             curi
         })
