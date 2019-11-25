@@ -50,6 +50,7 @@ router.get("/query", async function (req, res) {
         console.log('=======99999999999', isRender, html)
         await res.send({
             queryName: req.query.word,
+            resultData: resultData,
             data: html,
             source: source || "",
             total,
