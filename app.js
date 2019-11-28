@@ -15,10 +15,10 @@ app.set('view engine','ejs');
 app.use('/',express.static(path.join(__dirname, './static'))); 
 // app.use('/static', express.static(path.join(__dirname, '/static')));
 
-
+// 存储缓存中的值
+global.resOldData = []
 
 app.use(async function(req, res, next) {
-    console.log(req.url,'==========')
     if (req.url === "/favicon.ico") {
         res.end();
         return;

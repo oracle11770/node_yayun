@@ -73,19 +73,31 @@
 </body>
 <script>
     $(function(){ 
-        $('#kw').keydown(function(e){
-            var timer = ''
-            if(e.keyCode === 13){
+        // $('#kw').keydown(function(e){
+        //     var timer = ''
+        //     if(e.keyCode === 13){
+        //         $('#yayunID2').click()
+        //     }else{
+        //         if(timer){
+        //             clearTimeout(timer)
+        //         }
+        //         timer = setTimeout(function(){
+        //             $('#yayunID2').click()
+        //         },5000)
+        //     }
+        // });  
+        var flag = true;
+        $('#kw').delegate('#kw input', 'input', function () {
+            if (!flag) //默认都可。 输入法时 截断
                 $('#yayunID2').click()
-            }else{
-                if(timer){
-                    clearTimeout(timer)
-                }
-                timer = setTimeout(function(){
-                    $('#yayunID2').click()
-                },5000)
-            }
-        });  
+        }).on('compositionstart', function () {
+            flag = true;
+            console.log('输入法，录入开始');
+        }).on('compositionend', function () {
+            flag = false;
+            $('#yayunID2').click()//在input之后执行 所以需要手动调用一次
+            console.log('输入法，输入结束');
+        })
         let resWord = "<%=queryName %>"
         console.log(resWord)
         if(resWord){

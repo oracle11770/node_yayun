@@ -9,7 +9,7 @@ module.exports = {
                 data = res.data
             }
         }).catch((err) => {
-            console.log('----------------',err)
+            console.log('getQueryResult字----------------',err)
             data = '服务响应超时，请稍后重试。'
         })
 
@@ -23,7 +23,7 @@ module.exports = {
                 data = res.data
             }
         }).catch((err) => {
-            console.log('----------------',err)
+            console.log('getQueryVerse诗词----------------',err)
             data = '服务响应超时，请稍后重试2。'
         })
 

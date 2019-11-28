@@ -22,25 +22,48 @@ router.get("/query", async function (req, res) {
         (source === 'tang' || source === "song" || source === "yuan")){
         resultData = await indexObj.getQueryVerse(req.query)
         console.log('**************', resultData)
-        let resData = Object.assign({}, resultData)
-        if(JSON.stringify(resData) != "{}"){
-            total = Number(resData.total)
-            curi = Number(req.query.curi)
-            if (curi < total) {
-                fromi = curi > 6 ? (curi - 6) : fromi
-            } else {
-                fromi = total - total % 10
+        let resData = {
+            body: []
+        }
+        if(typeof resultData === 'string'){
+            html = [resultData]
+        }else{
+            if(resultData && resultData.body && resultData.body.length > 1){
+                resData = Object.assign({},resultData)
+                global.resOldData =  resultData
+            }else{
+                resData = global.resOldData
             }
-            resData.body.forEach(function (item) {
-                item.body = item.body.split('。')
-                item.body.splice(item.body.length-1, 1)
-            });
-            html = resData.body
+            if(JSON.stringify(resData) != "{}" && resData.body){
+                total = Number(resData.total)
+                curi = Number(req.query.curi)
+                if (curi < total) {
+                    fromi = curi > 6 ? (curi - 6) : fromi
+                } else {
+                    fromi = total - total % 10
+                }
+                resData.body.forEach(function (item) {
+                    item.body = item.body.split('。')
+                    item.body.splice(item.body.length-1, 1)
+                });
+                html = resData.body
+            }
         }
     }else{
         delete req.query.source
         resultData = await indexObj.getQueryResult(req.query)
-        html = resultData;
+        let resData = []
+        if(typeof resultData == 'string'){
+            html = resultData
+        }else{
+            if(resultData && resultData.length > 1){
+                resData = Object.assign({},resultData)
+                global.resOldData =  resultData
+            }else{
+                resData = global.resOldData
+            }
+            html = resData;
+        }
     }
     console.log(html,'+_++++++++++++++++++',req.query); 
    
