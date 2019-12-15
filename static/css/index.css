@@ -192,6 +192,7 @@ body .index-logo-src img{
     background-repeat: no-repeat;
     vertical-align: middle;
     margin-top: -4px;
+    margin-left: 2px;
 }
 .page{
     display: none;
