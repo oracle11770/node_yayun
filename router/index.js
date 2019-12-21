@@ -62,7 +62,9 @@ router.get("/query", async function (req, res) {
             }else{
                 resData = global.resOldData
             }
-            html = resData;
+            for(let key in resData){
+                html.push(resData[key])
+            }
         }
     }
     console.log(html,'+_++++++++++++++++++',req.query); 
