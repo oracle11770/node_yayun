@@ -4,6 +4,10 @@ module.exports = {
     getQueryResult: async (params) => {
         let data = ''
         await axios.get(api+'/index/api/yayun',{params}).then((res) => {
+            params.size = 10;
+            if(Number(params.curi)){
+                params.from = params.curi
+            }
             // console.log('res.status',res.status, typeof res.status)
             if (res.status === 200) {
                 data = res.data
@@ -17,6 +21,11 @@ module.exports = {
     },
     getQueryVerse: async (params) => {
         let data = ''
+        params.size = 10;
+        if(Number(params.curi)){
+            params.from = params.curi
+        }
+        console.log('============---------',params)
         await axios.get(api+'/index/api/body',{params}).then((res) => {
             // console.log('res.status',res.status, typeof res.status)
             if (res.status === 200) {
