@@ -16,12 +16,12 @@ router.get("/query", async function (req, res) {
     let fromi = 1
     let curi = 0
     let total = 0
-    let type = 'word'
+    let resType = 'word'
     var html = []
 
     if (source && 
         (source === 'tang' || source === "song" || source === "yuan")){
-        type = 'poem';
+        resType = 'poem';
         resultData = await indexObj.getQueryVerse(req.query)
         console.log('**************', resultData)
         let resData = {
@@ -58,7 +58,7 @@ router.get("/query", async function (req, res) {
             }
         }
     }else if(source === 'words'){
-        type = 'words';
+        resType = 'words';
         // 词组
         resultData = await indexObj.getQueryWords(req.query)
         if(typeof resultData === 'string'){
@@ -104,7 +104,7 @@ router.get("/query", async function (req, res) {
             resultData: resultData,
             data: html,
             source: source,
-            resType: type,
+            resType: resType,
             fromi,
             total,
             curi
@@ -112,7 +112,7 @@ router.get("/query", async function (req, res) {
     }else{
         await res.render('response.ejs',{
             data: html,
-            resType: type,
+            resType: resType,
             source: source,
             fromi,
             total,

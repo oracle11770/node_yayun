@@ -48,7 +48,8 @@
                 <% for(let fi = 0; fi < data.length; fi++){ %>
                 <div class='verDiv'>
                     <p><%= data[fi].title%></p>
-                    <p>【作者】&nbsp;<%= data[fi].author%> &nbsp;&nbsp;&nbsp;&nbsp; 【朝代】&nbsp;<%= data[fi].year%></p>
+                    <p>【作者】&nbsp;<%= data[fi].author%-></p>
+                    <p>【朝代】&nbsp;<%= data[fi].year%></p>
                     <% for(let bi = 0; bi < data[fi].body.length; bi++){ %>
                         <p><%- data[fi].body[bi]-%>。</p>
                     <% } %>
@@ -56,7 +57,7 @@
                 <% } %>
             </div>
             <% }else if(resType == 'words'){ %>
-            <div class="words">
+            <div class="words" id="queryCnt">
                 <% for(let ci = 0; ci < data.length; ci++){ %>
                     <p><%- data[ci].ci%> <label>&nbsp;&nbsp;注释: <%= data[ci].explanation%></label></p>
                 <% } %>
