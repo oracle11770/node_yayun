@@ -16,6 +16,19 @@ module.exports = {
 
         return data
     },
+    getQueryWords: async (params) => {
+        let data = ''
+        console.log('********************',params)
+        await axios.get(api+'/index/api/yayunc',{params}).then((res) => {
+            if (res.status === 200) {
+                data = res.data
+            }
+        }).catch((err) => {
+            console.log('getQueryWords 词组----------------',err)
+            data = '服务响应超时，请稍后重试。'
+        })
+        return data
+    },
     getQueryVerse: async (params) => {
         let data = ''
         params.size = 10;

@@ -136,7 +136,6 @@ body .index-logo-src img{
 #queryCnt {
     margin-top: 10px;
     letter-spacing: 8px;
-
 }
 .verDiv{
     margin-bottom: 50px;
@@ -196,6 +195,13 @@ body .index-logo-src img{
 }
 .page{
     display: none;
+}
+.words{
+    font-family: fangsong;
+    font-size: 14px;
+}
+#queryCnt span{
+   color:#c00 !important;
 }
 /*大屏幕*/
 @media screen and (min-width: 1200px) {

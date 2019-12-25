@@ -16,10 +16,12 @@ router.get("/query", async function (req, res) {
     let fromi = 1
     let curi = 0
     let total = 0
+    let type = 'word'
     var html = []
 
     if (source && 
         (source === 'tang' || source === "song" || source === "yuan")){
+        type = 'poem';
         resultData = await indexObj.getQueryVerse(req.query)
         console.log('**************', resultData)
         let resData = {
@@ -28,7 +30,7 @@ router.get("/query", async function (req, res) {
         if(typeof resultData === 'string'){
             html = [resultData]
         }else{
-            if(resultData && resultData.body && resultData.body.length > 1){
+            if(resultData && resultData.body && resultData.body.length > 0){
                 resData = Object.assign({},resultData)
                 global.resOldData =  resultData
             }else{
@@ -43,20 +45,46 @@ router.get("/query", async function (req, res) {
                     fromi = total - total % 10
                 }
                 resData.body.forEach(function (item) {
+                    let lastwds = item.lastword.split('')
+                    for(let i=0,len=lastwds.length;i<len;i++){
+                        const tempstr = lastwds[i]
+                        item.body = item.body.replace(new RegExp(""+tempstr+",","g"),"<span>"+lastwds[i]+"</span>,")
+                        item.body = item.body.replace(new RegExp(""+tempstr+"。","g"),"<span>"+lastwds[i]+"</span>。")
+                    }
                     item.body = item.body.split('。')
                     item.body.splice(item.body.length-1, 1)
                 });
                 html = resData.body
             }
         }
-    }else{
+    }else if(source === 'words'){
+        type = 'words';
+        // 词组
+        resultData = await indexObj.getQueryWords(req.query)
+        if(typeof resultData === 'string'){
+            html = [resultData]
+        }else{
+            if(resultData && resultData.body && resultData.body.length > 0){
+                resData = Object.assign({},resultData)
+                global.resOldData = resultData
+            }else{
+                resData = global.resOldData
+            }
+            if(JSON.stringify(resData) != "{}" && resData.body){
+                resData.body.forEach(function (item) {
+                   item.ci = item.ci.replace(item.lastword, '<span>'+item.lastword+'</span>')
+                });
+                html = resData.body
+            }
+        }
+    } else {
         delete req.query.source
         resultData = await indexObj.getQueryResult(req.query)
         let resData = []
         if(typeof resultData == 'string'){
             html = resultData
         }else{
-            if(resultData && resultData.length > 1){
+            if(resultData && resultData.length > 0){
                 resData = Object.assign({},resultData)
                 global.resOldData =  resultData
             }else{
@@ -76,6 +104,7 @@ router.get("/query", async function (req, res) {
             resultData: resultData,
             data: html,
             source: source,
+            resType: type,
             fromi,
             total,
             curi
@@ -83,6 +112,7 @@ router.get("/query", async function (req, res) {
     }else{
         await res.render('response.ejs',{
             data: html,
+            resType: type,
             source: source,
             fromi,
             total,
