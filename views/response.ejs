@@ -48,7 +48,7 @@
                 <% for(let fi = 0; fi < data.length; fi++){ %>
                 <div class='verDiv'>
                     <p><%= data[fi].title%></p>
-                    <p>【作者】&nbsp;<%= data[fi].author%-></p>
+                    <p>【作者】&nbsp;<%= data[fi].author%></p>
                     <p>【朝代】&nbsp;<%= data[fi].year%></p>
                     <% for(let bi = 0; bi < data[fi].body.length; bi++){ %>
                         <p><%- data[fi].body[bi]-%>。</p>
