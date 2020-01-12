@@ -43,4 +43,5 @@ $(function(){
             window.location.href = '/query?word=' + word + '&source=word'
         }
     })
+
 })

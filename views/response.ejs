@@ -28,6 +28,9 @@
                 <a id="wordIdwords" class="taba" href="javascript:void(0)" data-val='words'>词</a>
             </span>
             <span>
+                <a id="wordIdlyrics" class="taba" href="javascript:void(0)" data-val='lyrics'>歌词</a>
+            </span>
+            <span>
                 <a id="wordIdtang" class="taba" href="javascript:void(0)" data-val='tang'>唐诗</a>
             </span>
             <span>
@@ -56,6 +59,19 @@
                 </div>
                 <% } %>
             </div>
+            <% }else if(resType == 'lyrics'){ %>
+            <div id="queryCnt">
+                <% for(let si = 0; si < data.length; si++){ %>
+                <div class='verDiv'>
+                    <p><%= data[si].song_name%></p>
+                    <p>【演唱】&nbsp;<%= data[si].singer_name%></p>
+                    <p>【专辑】&nbsp;<%= data[si].album_name%></p>
+                    <% for(let bi = 0; bi < data[si].body.length; bi++){ %>
+                        <p><%- data[si].body[bi]-%>。</p>
+                    <% } %>
+                </div>
+                <% } %>
+            </div>
             <% }else if(resType == 'words'){ %>
             <div class="words" id="queryCnt">
                 <% for(let ci = 0; ci < data.length; ci++){ %>
@@ -63,8 +79,8 @@
                 <% } %>
             </div>
             <% }else{ %>
-            <div id="queryCnt">
-                <%= data %>
+            <div id="queryCnt" class="word-list" style="color:black;">
+                <%- data %>
             </div>
             <% } %>
        </div>
@@ -137,6 +153,9 @@
             if(word){
                 window.location.href = '/query?word=' + word + '&source=' +  source + '&curi=' +  1
             }
+        })
+        $('#queryCnt span').click(function(){
+            var word = $(this).text()
         })
     })
 </script>

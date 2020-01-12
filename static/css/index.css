@@ -201,7 +201,10 @@ body .index-logo-src img{
     font-size: 14px;
 }
 #queryCnt span{
-   color:#c00 !important;
+   color:#c00 ;
+}
+.word-list span{
+    color: black !important;
 }
 /*大屏幕*/
 @media screen and (min-width: 1200px) {
