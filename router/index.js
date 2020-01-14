@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var indexObj = require('../models/index')
+var {wordData, wordsData, poemData, wordNote} = require('./data')
 
 router.get("", async function (req, res) {
     await res.render('index.ejs',{
@@ -83,6 +84,7 @@ router.get("/query", async function (req, res) {
             }
         }
     }else if(source === 'lyrics'){
+        // 歌词
         resType = 'lyrics'
         resultData = await indexObj.getQuerySong(req.query)
         if(typeof resultData === 'string'){
@@ -115,10 +117,10 @@ router.get("/query", async function (req, res) {
             }
         }
 
-    } else {
-        delete req.query.source
-        resultData = await indexObj.getQueryResult(req.query)
-        
+    }else if(source === 'comment'){
+        // resultData = await indexObj.getQueryResult(req.query)
+        resultData = wordNote
+
         let resData = []
         if(typeof resultData == 'string'){
             html = resultData
@@ -132,15 +134,33 @@ router.get("/query", async function (req, res) {
             for(let key in resData){
                 html.push(`<span>${resData[key]}</span>`)
             }
-            // for(let i=0;i<resDa.length;i++){
-            //     html.push(`<span>${resDa[i]}</span>`)
-            // }
+            for(let i=0;i<resDa.length;i++){
+                html.push(`<span>${resDa[i]}</span>`)
+            }
+        }
+    } else {
+        // 词
+        delete req.query.source
+        // resultData = await indexObj.getQueryResult(req.query)
+        resultData = wordData;
+        let resData = []
+        if(typeof resultData == 'string'){
+            html = resultData
+        }else{
+            if(resultData ){
+                resData = Object.assign({},resultData)
+                global.resOldData =  resultData
+            }else{
+                resData = global.resOldData
+            }
+            for(let key in resData){
+                html.push(`<span>${resData[key]}</span>`)
+            }
         }
     }
     console.log(html,'+_++++++++++++++++++',req.query,resType); 
    
     if(isRender){
-        // console.log(99999999999,resultData)
         await res.send({
             queryName: req.query.word,
             resultData: resultData,

@@ -93,6 +93,12 @@
         </div>
         <% } %>
     </div>
+
+     <!-- 字的注解 -->
+     <div class="word-note popup">
+        <span><em></em></span>
+
+     </div>
 </body>
 <script>
     $(function(){ 
@@ -108,7 +114,16 @@
         //             $('#yayunID2').click()
         //         },5000)
         //     }
-        // });  
+        // }); 
+        function getMousePos(event) {
+            var e = event || window.event;
+            var scrollX = document.documentElement.scrollLeft || document.body.scrollLeft;
+            var scrollY = document.documentElement.scrollTop || document.body.scrollTop;
+            var x = e.pageX || e.clientX + scrollX;
+            var y = e.pageY || e.clientY + scrollY;
+            alert('x: ' + x + '\ny: ' + y);
+            return { 'x': x, 'y': y };
+        } 
         var flag = true;
         $('#kw').delegate('#kw input', 'input', function () {
             if (!flag) //默认都可。 输入法时 截断
@@ -156,7 +171,10 @@
         })
         $('#queryCnt span').click(function(){
             var word = $(this).text()
+            getMousePos()
+            $('.word-note').css('display','block')
         })
+        
     })
 </script>
 </html>
