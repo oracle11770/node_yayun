@@ -95,10 +95,9 @@
     </div>
 
      <!-- 字的注解 -->
-     <div class="word-note popup">
-        <span><em></em></span>
-
-     </div>
+    <div class="el-popover el-popper" x-placement="top">
+       
+    </div>
 </body>
 <script>
     $(function(){ 
@@ -121,7 +120,6 @@
             var scrollY = document.documentElement.scrollTop || document.body.scrollTop;
             var x = e.pageX || e.clientX + scrollX;
             var y = e.pageY || e.clientY + scrollY;
-            alert('x: ' + x + '\ny: ' + y);
             return { 'x': x, 'y': y };
         } 
         var flag = true;
@@ -169,10 +167,24 @@
                 window.location.href = '/query?word=' + word + '&source=' +  source + '&curi=' +  1
             }
         })
+        function renderNot(obj){
+            $('.el-popover').html()
+        }
         $('#queryCnt span').click(function(){
             var word = $(this).text()
-            getMousePos()
-            $('.word-note').css('display','block')
+            var xyObj = getMousePos()
+            $('.el-popover').attr('style',`display:block;max-width: 500px; transform-origin: center top; 
+            z-index: 2113; position: absolute; top: ${xyObj.y+6}px; left: ${xyObj.x+10}px;`)
+            $.ajax({
+                url:"/query",  
+                dataType:"json", 
+                data:{"word": word,source:'comment',isRender:"false"},
+                type:"GET", 
+                success: function(res){
+                    console.log(res)
+                    $('.el-popover').html()
+                }
+            });
         })
         
     })

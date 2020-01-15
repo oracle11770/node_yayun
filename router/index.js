@@ -131,12 +131,7 @@ router.get("/query", async function (req, res) {
             }else{
                 resData = global.resOldData
             }
-            for(let key in resData){
-                html.push(`<span>${resData[key]}</span>`)
-            }
-            for(let i=0;i<resDa.length;i++){
-                html.push(`<span>${resDa[i]}</span>`)
-            }
+            
         }
     } else {
         // 词
@@ -153,9 +148,7 @@ router.get("/query", async function (req, res) {
             }else{
                 resData = global.resOldData
             }
-            for(let key in resData){
-                html.push(`<span>${resData[key]}</span>`)
-            }
+           if(resultData.)
         }
     }
     console.log(html,'+_++++++++++++++++++',req.query,resType); 

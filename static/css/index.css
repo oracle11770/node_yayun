@@ -206,6 +206,68 @@ body .index-logo-src img{
 .word-list span{
     color: black !important;
 }
+.el-popover{
+    display: none;
+    position: absolute;
+    background: #fff;
+    min-width: 150px;
+    border-radius: 4px;
+    border: 1px solid #ebeef5;
+    padding: 12px;
+    z-index: 2000;
+    color: #606266;
+    line-height: 1.4;
+    text-align: justify;
+    font-size: 14px;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+    word-break: break-all;
+}
+.el-popper[x-placement^=top] .popper__arrow {
+    bottom: -6px;
+    left: 50%;
+    margin-right: 3px;
+    border-top-color: #ebeef5;
+    border-bottom-width: 0;
+}
+.el-popper .popper__arrow {
+    border-width: 6px;
+    filter: drop-shadow(0 2px 12px rgba(0,0,0,.03));
+}
+.el-popper .note-row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.el-popper .note-row div{
+    flex:1;
+}
+.el-popper .note-row .note-label{
+    width: 50px;
+    padding: 0 5px 0 12px;
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    color: #999;
+}
+.el-popper .note-row .note-val{
+    zoom: 1;
+    color: #333;
+    width: 50px;
+    float: left;
+    position: relative;
+    word-break: break-all;
+}
+.note-cnt{
+    font-size: 14px;
+    word-wrap: break-word;
+    color: #333;
+    margin-bottom: 15px;
+    text-indent: 2em;
+    line-height: 24px;
+    zoom: 1;
+}
 .word-note {
     position: absolute;
     right: 0;
