@@ -95,7 +95,7 @@
     </div>
 
      <!-- 字的注解 -->
-    <div class="el-popover el-popper" x-placement="top">
+    <div class="el-popover el-popper word-note" x-placement="top">
        
     </div>
 </body>
@@ -161,7 +161,8 @@
                 window.location.href = '/query?word=' + word + '&source=' + source + '&curi=' + curi
             }
          })
-        $('#yayunID2').click(function(){
+        $('#yayunID2').click(function(e){
+            e.stopPropagation()
             var word = $('#kw').val()
             if(word){
                 window.location.href = '/query?word=' + word + '&source=' +  source + '&curi=' +  1
@@ -170,10 +171,11 @@
         function renderNot(obj){
             $('.el-popover').html()
         }
-        $('#queryCnt span').click(function(){
+        $('#queryCnt span').click(function(e){
+            e.stopPropagation()
             var word = $(this).text()
             var xyObj = getMousePos()
-            $('.el-popover').attr('style',`display:block;max-width: 500px; transform-origin: center top; 
+            $('.el-popover').attr('style',`display:block;transform-origin: center top; 
             z-index: 2113; position: absolute; top: ${xyObj.y+6}px; left: ${xyObj.x+10}px;`)
             $.ajax({
                 url:"/query",  
@@ -181,12 +183,14 @@
                 data:{"word": word,source:'comment',isRender:"false"},
                 type:"GET", 
                 success: function(res){
-                    console.log(res)
-                    $('.el-popover').html()
+                    $('.el-popover').html(res.data)
                 }
             });
         })
-        
+        $("html").click(function(){
+            $('.el-popover').attr('style',`display:none;`)
+            $('.el-popover').html("")
+        })
     })
 </script>
 </html>

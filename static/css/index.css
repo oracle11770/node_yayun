@@ -221,6 +221,7 @@ body .index-logo-src img{
     font-size: 14px;
     box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
     word-break: break-all;
+    overflow-y: auto;
 }
 .el-popper[x-placement^=top] .popper__arrow {
     bottom: -6px;
@@ -235,11 +236,14 @@ body .index-logo-src img{
 }
 .el-popper .note-row{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    border-bottom: 1px dashed #999;
 }
-.el-popper .note-row div{
+.el-popper .note-row .row-part{
     flex:1;
+    display: flex;
+    justify-content: flex-start;
 }
 .el-popper .note-row .note-label{
     width: 50px;
@@ -271,8 +275,7 @@ body .index-logo-src img{
 .word-note {
     position: absolute;
     right: 0;
-    display: none;
-    width: 518px;
+    max-width: 518px;
     height: 200px;
     padding: 9px;
     border: 1px solid #e3e3e3;

@@ -118,26 +118,54 @@ router.get("/query", async function (req, res) {
         }
 
     }else if(source === 'comment'){
-        // resultData = await indexObj.getQueryResult(req.query)
-        resultData = wordNote
+        resultData = await indexObj.getWordsNote(req.query)
+        // resultData = wordNote
 
         let resData = []
         if(typeof resultData == 'string'){
             html = resultData
         }else{
-            if(resultData && resultData.length > 0){
+            if(resultData){
                 resData = Object.assign({},resultData)
                 global.resOldData =  resultData
             }else{
                 resData = global.resOldData
             }
-            
+            let obj = resData.body[0]
+            html = `<div class="note-row">
+                <div class="row-part">
+                    <div class="note-label">字</div>
+                    <div class="note-val">${obj.word}</div>
+                </div>
+                <div class="row-part">
+                    <div class="note-label">拼音</div>
+                    <div class="note-val">${obj.pinyin}</div>
+                </div>
+            </div>
+            <div class="note-row">
+                <div class="row-part">
+                    <div class="note-label">繁体</div>
+                    <div class="note-val">${obj.oldword}</div>
+                </div>
+                <div class="row-part">
+                    <div class="note-label">笔画</div>
+                    <div class="note-val">${obj.strokes}</div>
+                </div>
+            </div>
+            <div class="note-row">
+                <div  class="row-part">
+                    <div class="note-label">部首</div>
+                    <div class="note-val">${obj.radicals}</div>
+                </div>
+            </div>
+            <div class="note-cnt">${obj.explanation}
+            </div>`
         }
     } else {
         // 词
         delete req.query.source
-        // resultData = await indexObj.getQueryResult(req.query)
-        resultData = wordData;
+        resultData = await indexObj.getQueryResult(req.query)
+        // resultData = wordData;
         let resData = []
         if(typeof resultData == 'string'){
             html = resultData
@@ -148,7 +176,9 @@ router.get("/query", async function (req, res) {
             }else{
                 resData = global.resOldData
             }
-           if(resultData.)
+            for(let key in resData){
+                html.push('<span>'+resData[key]+'</span>')
+            }
         }
     }
     console.log(html,'+_++++++++++++++++++',req.query,resType); 
