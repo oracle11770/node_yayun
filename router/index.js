@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var indexObj = require('../models/index')
-var {wordData, wordsData, poemData, wordNote} = require('./data')
+var {wordData, wordsData, poemData, wordNote,songData} = require('./data')
 
 router.get("", async function (req, res) {
     await res.render('index.ejs',{
@@ -87,6 +87,7 @@ router.get("/query", async function (req, res) {
         // 歌词
         resType = 'lyrics'
         resultData = await indexObj.getQuerySong(req.query)
+        // resultData = songData
         if(typeof resultData === 'string'){
             html = [resultData]
         }else{
@@ -109,6 +110,7 @@ router.get("/query", async function (req, res) {
                     for(let i=0,len=lastwds.length;i<len;i++){
                         const tempstr = lastwds[i]
                         item.body = item.body.replace(new RegExp(""+tempstr+"\n","g"),"<span>"+lastwds[i]+"</span>。")
+                        item.body = item.body.replace(new RegExp(""+tempstr+" ","g"),"<span>"+lastwds[i]+"</span>。")
                     }
                     item.body = item.body.split('。')
                     item.body.splice(item.body.length-1, 1)
