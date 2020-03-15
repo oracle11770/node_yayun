@@ -7,6 +7,7 @@ module.exports = {
         console.log('********************',params)
         await axios.get(api+'/index/api/yayun',{params}).then((res) => {
             // console.log('res.status',res.status, typeof res.status)
+            console.log('getQueryResult', res.data)
             if (res.status === 200) {
                 data = res.data
             }
@@ -27,6 +28,7 @@ module.exports = {
         console.log('============---------',params)
         await axios.get(api+'/index/api/song',{params}).then((res) => {
             // console.log('res.status',res.status, typeof res.status)
+            console.log('getQuerySong', res.data)
             if (res.status === 200) {
                 data = res.data
             }
@@ -42,6 +44,7 @@ module.exports = {
         let data = ''
         console.log('********************',params)
         await axios.get(api+'/index/api/yayunc',{params}).then((res) => {
+            console.log('getQueryWords', res.data)
             if (res.status === 200) {
                 data = res.data
             }
@@ -61,6 +64,7 @@ module.exports = {
         console.log('============---------',params)
         await axios.get(api+'/index/api/body',{params}).then((res) => {
             // console.log('res.status',res.status, typeof res.status)
+            console.log('getQueryVerse', res.data)
             if (res.status === 200) {
                 data = res.data
             }
@@ -76,6 +80,7 @@ module.exports = {
         let data = ''
         console.log('********************',params)
         await axios.get(api+'/index/api/yayund',{params}).then((res) => {
+            console.log('getWordsNote', res.data)
             if (res.status === 200) {
                 data = res.data
             }

@@ -106,7 +106,7 @@ router.get("/query", async function (req, res) {
                     fromi = total - total % 10
                 }
                 resData.body.forEach(function (item) {
-                    let lastwds = item.lastword.split(',')
+                    let lastwds = item.lastword.replace(new RegExp(",", "g"),'').split('')
                     for(let i=0,len=lastwds.length;i<len;i++){
                         const tempstr = lastwds[i]
                         item.body = item.body.replace(new RegExp(""+tempstr+"\n","g"),"<span>"+lastwds[i]+"</span>。")
@@ -183,7 +183,7 @@ router.get("/query", async function (req, res) {
             }
         }
     }
-    console.log(html,'+_++++++++++++++++++',req.query,resType); 
+    console.log('+_++++++++++++++++++',req.query,resType); 
    
     if(isRender){
         await res.send({
