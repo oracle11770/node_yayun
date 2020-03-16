@@ -9,7 +9,7 @@
     <script src="/js/libs/jquery-1.11.3.min.js"></script>
 </head>
 <body>
-    <div >
+    <div id="main">
         <div class="subQuery">
             <a class="index-logo-src" href="//51rhyme.com/"><img src="/image/51logo.png" width="101" height="33"></a>
             <span class="bg s_ipt_wr quickdelete-wrap">
@@ -98,6 +98,13 @@
     <div class="el-popover el-popper word-note" x-placement="top">
        
     </div>
+
+    <div class="flr-bar">
+        <div class="fr-icon">^</div>
+        <div class="fr-icon">?</div>
+        <div id="wxm"><img src="/image/wxm.jpg"/></div>
+    </div>
+
 </body>
 <script>
     $(function(){ 
@@ -190,6 +197,27 @@
         $("html").click(function(){
             $('.el-popover').attr('style',`display:none;`)
             $('.el-popover').html("")
+        })
+        var wx_timer = 0
+        $(".fr-icon").click(function(e){
+            e.stopPropagation()
+            $('.fr-act').removeClass('fr-act')
+            $(this).addClass('fr-act')
+            var indexI = $(this).index()
+            if(indexI === 0){
+               $(window).scrollTop(0);
+            }else if(indexI ===1 ){
+               $('#wxm').addClass('wxm-show')
+               if(wx_timer){
+                   clearTimeout(wx_timer)
+               }
+               wx_timer = setTimeout(function (e) {
+                    $('#wxm').removeClass('wxm-show')
+                }, 5000)
+            }
+            setTimeout(function(e){
+                $('.fr-act').removeClass('fr-act')
+            },300)
         })
     })
 </script>
