@@ -67,6 +67,7 @@ router.get("/query", async function (req, res) {
         resType = 'words';
         // 词组
         resultData = await indexObj.getQueryWords(req.query)
+        // resultData = wordsData
         if(typeof resultData === 'string'){
             html = [resultData]
         }else{
@@ -77,6 +78,13 @@ router.get("/query", async function (req, res) {
                 resData = global.resOldData
             }
             if(JSON.stringify(resData) != "{}" && resData.body){
+                total = Number(resData.total)
+                curi = Number(req.query.curi)
+                if (curi < total) {
+                    fromi = curi > 6 ? (curi - 6) : fromi
+                } else {
+                    fromi = total - total % 10
+                }
                 resData.body.forEach(function (item) {
                    item.ci = item.ci.replace(item.lastword, '<span>'+item.lastword+'</span>')
                 });

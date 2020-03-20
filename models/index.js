@@ -43,6 +43,10 @@ module.exports = {
     getQueryWords: async (params) => {
         let data = ''
         console.log('********************',params)
+        params.size = 20;
+        if (Number(params.curi)) {
+            params.from = params.curi
+        }
         await axios.get(api+'/index/api/yayunc',{params}).then((res) => {
             console.log('getQueryWords', res.data)
             if (res.status === 200) {
