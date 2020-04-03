@@ -1,15 +1,21 @@
 var express = require('express');
 var router = express.Router();
 var indexObj = require('../models/index')
-var {wordData, wordsData, poemData, wordNote,songData} = require('./data')
+var {wordData, wordsData, poemData, wordNote,songData,cyData} = require('./data')
 
 router.get("", async function (req, res) {
     await res.render('index.ejs',{
     });
 });
 
-router.get("/queryNote", async function(req, res){
-    
+router.get("/cyjl", async function(req, res){
+    console.log('req.body++++', req.query)
+    const resultData = await indexObj.getCyjl(req.query)
+    // const resultData = cyData;
+    // console.log(resultData)
+    await res.send({
+        data: resultData
+    })
 })
 
 router.get("/query", async function (req, res) {
@@ -174,8 +180,8 @@ router.get("/query", async function (req, res) {
     } else {
         // 词
         delete req.query.source
-        resultData = await indexObj.getQueryResult(req.query)
-        // resultData = wordData;
+        // resultData = await indexObj.getQueryResult(req.query)
+        resultData = wordData;
         let resData = []
         if(typeof resultData == 'string'){
             html = resultData

@@ -94,4 +94,20 @@ module.exports = {
         })
         return data
     },
+    // 获取字的注释
+    getCyjl: async (params) => {
+        let data = ''
+        console.log('********************', params)
+        await axios.get(api + '/index/api/chengyu', { params }).then((res) => {
+            console.log('getCyjl', res.data)
+            if (res.status === 200) {
+                data = res.data
+            }
+        }).catch((err) => {
+            console.log('getCyjl 成语接龙----------------', err)
+            data = '服务响应超时，请稍后重试。'
+        })
+        return data
+    },
+
 }
