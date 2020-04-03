@@ -235,11 +235,11 @@
         $('.cyjl').click(function (e) {
             e.stopPropagation()
             $('.chat-container').addClass('chat-show')
+            cyData = localStorage.getItem('cy-data') && localStorage.getItem('cy-data').split(',') || []
             updateCy()
         })
         let updateCy = function(){
             let html = []
-            cyData = localStorage.getItem('cy-data') && localStorage.getItem('cy-data').split(',') || cyData
             cyData.forEach((item,index) => {
                 if(index%2){
                     html.push('<li class="message left"><img class="logo" src="/image/cy-admin.jpg" /><p>' + item +'</p></li >')

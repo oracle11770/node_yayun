@@ -2,3 +2,6 @@
 ./node_modulues
 logs
 pids
+node.log
+run_node.sh
+views/node.log
