@@ -13,13 +13,13 @@
 <body>
     <div id="main">
         <div class="subQuery">
-            <a class="index-logo-src grayImg" href="//51rhyme.com/"><img src="/image/51logo.png" width="101" height="33"></a>
+            <a class="index-logo-src" href="//51rhyme.com/"><img src="/image/51logo.png" width="101" height="33"></a>
             <span class="bg s_ipt_wr quickdelete-wrap">
                 <input id="kw" name="word" class="s_ipt" value="<%= body %>" maxlength="255" autocomplete="off">
             </span>
             <span class="bg s_btn_wr" id="yayunID2">
                 <!-- <input type="button"  value=""> -->
-                <img src="/image/51query.jpg" alt=""  class="bg s_btn grayImg">
+                <img src="/image/51query.jpg" alt=""  class="bg s_btn">
             </span>
         </div>
         <div class="yayuntab">
@@ -120,6 +120,9 @@
 </body>
 <script>
     $(function(){ 
+        $.ajaxSetup({
+            cache: true
+        });
         // $('#kw').keydown(function(e){
         //     var timer = ''
         //     if(e.keyCode === 13){
@@ -266,8 +269,7 @@
                     type: "get",
                     url: '/cyjl',
                     dataType: 'json',
-                    cache: false,
-                    data: { word: word },
+                    data: params,
                     success: function (data) {
                         reqFlag = true
                         cyData = localStorage.getItem('cy-data') && localStorage.getItem('cy-data').split(',') || []
