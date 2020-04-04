@@ -46,6 +46,19 @@ body {
 body .index-logo-src img{
     display: none;
 }
+
+.grayImg {
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  filter: grayscale(100%);
+  filter: gray;
+}
+
+.disable-gray {
+  background: rgba(204,204,204,1) !important;
+}
 .yayunbox{
     height: 100%;
 }
@@ -114,6 +127,9 @@ body .index-logo-src img{
     line-height: 30px;
     border-top:1px solid #f8f8f8;
     background:#f8f8f8;
+    white-space: nowrap;
+    overflow: hidden;
+    overflow-x: auto;
 }
 .curspan{
     border-bottom: 2px solid #38f;
@@ -443,33 +459,38 @@ body .index-logo-src img{
 	position: absolute;
 	bottom: 0;
 	left: 0;
-	right: 0;
-	padding: 10px 15px;
-	width: 100%;
-}
-
-footer {
-    background-color: #222;
-    color: #fff;
-    font-size: 14px;
-    bottom: 0;
-    position: fixed;
-    left: 0;
     right: 0;
-    text-align: center;
-    z-index: 999;
+    border: 0;
+	padding: 10px 15px;
+    width: 72%;
+    height: 16px;
 }
 
-footer p {
-    margin: 10px 0;
-}
-
-footer i {
-    color: red;
-}
-
-footer a {
+.btn_com {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 10px 0;
+    width: 28%;
+    height: 16px;
+    line-height: 16px;
     color: #3c97bf;
+    text-decoration: none;
+    background: #dcf6fa;
+    text-align: center;
+}
+.btn_com:focus {
+    outline: none;
+    text-decoration: none;
+}
+.btn_com:hover {
+    background-color:#dcf6ea;
+    outline: none;
+    text-decoration: none;
+}
+.btn_com:active {
+    transform: scale(0.98);
+    outline: none;
     text-decoration: none;
 }
 /*大屏幕*/
@@ -725,8 +746,9 @@ footer a {
         animation: circel 1.667s linear infinite;
     }
     .sj-flr{
-        right: 10px;
-        bottom:300px;
+        right: 4px;
+        bottom: 0;
+        top: 150px;
     }
     .sj-chat{
         right: 50px;
@@ -821,10 +843,15 @@ footer a {
         animation: circel 1.667s linear infinite;
     }
     .sj-flr{
-        right: 10px;
-        bottom:300px;
+        right: 4px;
+        bottom: 0;
+        top: 150px;
     }
     .sj-chat{
-        right: 50px;
+        width: 280px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        z-index: 999;
     }
 }

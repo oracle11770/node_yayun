@@ -13,13 +13,13 @@
 <body>
     <div id="main">
         <div class="subQuery">
-            <a class="index-logo-src" href="//51rhyme.com/"><img src="/image/51logo.png" width="101" height="33"></a>
+            <a class="index-logo-src grayImg" href="//51rhyme.com/"><img src="/image/51logo.png" width="101" height="33"></a>
             <span class="bg s_ipt_wr quickdelete-wrap">
                 <input id="kw" name="word" class="s_ipt" value="<%= body %>" maxlength="255" autocomplete="off">
             </span>
             <span class="bg s_btn_wr" id="yayunID2">
                 <!-- <input type="button"  value=""> -->
-                <img src="/image/51query.jpg" alt=""  class="bg s_btn">
+                <img src="/image/51query.jpg" alt=""  class="bg s_btn grayImg">
             </span>
         </div>
         <div class="yayuntab">
@@ -112,7 +112,10 @@
     <div class="chat-container sj-chat">
         <div id="chatCls"><img src="/image/close.png"></div>
         <ul class="chat"></ul>
-        <input type="text" class="text_input" placeholder="输入一个成语，点击回车键发送" />
+        <div>
+            <input type="text" class="text_input" placeholder="输入一个成语，点击回车键发送" />
+            <a id="sumitcomment" href="javascript:" class="btn_com">发 送</a>
+        </div>
     </div>
 </body>
 <script>
@@ -249,32 +252,49 @@
             });
             $('.chat').html(html.join(''))
         }
+        let getCyData = function(){
+            if (!reqFlag) return false
+            const word = $('.text_input').val()
+            let params = {}
+            if (cyData[cyData.length - 1]) {
+                params.oldWord = cyData[cyData.length - 1]
+            }
+            if (word) {
+                params.word = word
+                $.ajax({
+                    type: "get",
+                    url: '/cyjl',
+                    dataType: 'json',
+                    cache: false,
+                    data: { word: word },
+                    success: function (data) {
+                        reqFlag = true
+                        cyData = localStorage.getItem('cy-data') && localStorage.getItem('cy-data').split(',') || []
+                        cyData.push(word)
+                        cyData.push(data.data.res)
+                        console.log(data.data.code, typeof data.data.code)
+                        if (data.data.code === 200) {
+                            localStorage.setItem('cy-data', cyData.join(','))
+                            $('.text_input').val('')
+                        }
+                        updateCy()
+                        $(".chat").scrollTop($(".chat")[0].scrollHeight);
+                    }
+                })
+            }else{
+                reqFlag = true
+            }
+        }
         let cyData = []
+        let reqFlag = true
         $('.text_input').keyup(function(e){
             if(e.keyCode === 13){
-                const word = $(this).val()
-                if(word){
-                    $.ajax({
-                        type: "get",
-                        url: '/cyjl',
-                        dataType: 'json',
-                        cache: false,
-                        data: { word:  word},
-                        success: function (data) {
-                            cyData = localStorage.getItem('cy-data') && localStorage.getItem('cy-data').split(',') || []
-                            cyData.push(word)
-                            cyData.push(data.data.res)
-                            console.log(data.data.code,typeof data.data.code)
-                            if(data.data.code===200){
-                               localStorage.setItem('cy-data',cyData.join(','))  
-                               $('.text_input').val('')   
-                            }
-                            updateCy()
-                            $(".chat").scrollTop($(".chat")[0].scrollHeight);
-                        }
-                    })
-                }
+               getCyData()
             }
+        })
+        $('#sumitcomment').click(function (e) {
+            e.stopPropagation()
+            getCyData()
         })
     })
     //右边浮窗
