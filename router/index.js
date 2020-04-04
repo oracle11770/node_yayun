@@ -180,8 +180,8 @@ router.get("/query", async function (req, res) {
     } else {
         // 词
         delete req.query.source
-        // resultData = await indexObj.getQueryResult(req.query)
-        resultData = wordData;
+        resultData = await indexObj.getQueryResult(req.query)
+        // resultData = wordData;
         let resData = []
         if(typeof resultData == 'string'){
             html = resultData

@@ -11,6 +11,9 @@
 </head>
 <body>
     <div class="yayunCnt">
+        <div class="cyjl-index">
+            <img src="/image/cyjl-icon.png" alt="">
+        </div>
         <div class="yayunbox clearfix">
             <div id="yayunLogo">
                 <img hidefocus="true" class="logoImg grayImg" src="/image/51logo.png" semap="#mp">
@@ -34,6 +37,16 @@
             </p>
         </div>
     </div>
+
+    
+    <div class="chat-container">
+        <div id="chatCls"><img src="/image/close.png"></div>
+        <ul class="chat"></ul>
+        <div>
+            <input type="text" class="text_input" placeholder="输入一个成语，回车键发送" />
+            <a id="sumitcomment" href="javascript:" class="btn_com">发 送</a>
+        </div>
+    </div>
 </body>
 <script>
     var _hmt = _hmt || [];
@@ -43,5 +56,71 @@
         var s = document.getElementsByTagName("script")[0]; 
         s.parentNode.insertBefore(hm, s);
     })();
+    $('#chatCls').click(function (e) {
+        e.stopPropagation()
+        $('.chat-container').removeClass('chat-show')
+        localStorage.clear()
+    })
+    $('.cyjl-index').click(function (e) {
+        e.stopPropagation()
+        $('.chat-container').addClass('chat-show')
+        cyData = localStorage.getItem('cy-data') && localStorage.getItem('cy-data').split(',') || []
+        updateCy()
+    })
+    let updateCy = function () {
+        let html = []
+        cyData.forEach((item, index) => {
+            if (index % 2) {
+                html.push('<li class="message left"><img class="logo" src="/image/cy-admin2.jpg" /><p>' + item + '</p></li >')
+            } else {
+                html.push(' <li class="message right"><img class="logo" src="/image/cy-admin.jpg" /><p>' + item + '</p></li >')
+            }
+        });
+        $('.chat').html(html.join(''))
+    }
+    let getCyData = function () {
+        if (!reqFlag) return false
+        const word = $('.text_input').val()
+        let params = {}
+        if (cyData[cyData.length - 1]) {
+            params.oldWord = cyData[cyData.length - 1]
+        }
+        if (word) {
+            params.word = word
+            $.ajax({
+                type: "get",
+                url: '/cyjl',
+                dataType: 'json',
+                cache: false,
+                data: { word: word },
+                success: function (data) {
+                    reqFlag = true
+                    cyData = localStorage.getItem('cy-data') && localStorage.getItem('cy-data').split(',') || []
+                    cyData.push(word)
+                    cyData.push(data.data.res)
+                    console.log(data.data.code, typeof data.data.code)
+                    if (data.data.code === 200) {
+                        localStorage.setItem('cy-data', cyData.join(','))
+                        $('.text_input').val('')
+                    }
+                    updateCy()
+                    $(".chat").scrollTop($(".chat")[0].scrollHeight);
+                }
+            })
+        } else {
+            reqFlag = true
+        }
+    }
+    let cyData = []
+    let reqFlag = true
+    $('.text_input').keyup(function (e) {
+        if (e.keyCode === 13) {
+            getCyData()
+        }
+    })
+    $('#sumitcomment').click(function (e) {
+        e.stopPropagation()
+        getCyData()
+    })
 </script>
 </html>

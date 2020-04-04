@@ -113,7 +113,7 @@
         <div id="chatCls"><img src="/image/close.png"></div>
         <ul class="chat"></ul>
         <div>
-            <input type="text" class="text_input" placeholder="输入一个成语，点击回车键发送" />
+            <input type="text" class="text_input" placeholder="输入一个成语，回车键发送" />
             <a id="sumitcomment" href="javascript:" class="btn_com">发 送</a>
         </div>
     </div>
@@ -234,6 +234,7 @@
         $('#chatCls').click(function (e) {
             e.stopPropagation()
             $('.chat-container').removeClass('chat-show')
+            localStorage.clear()
         })
         $('.cyjl').click(function (e) {
             e.stopPropagation()
@@ -245,9 +246,9 @@
             let html = []
             cyData.forEach((item,index) => {
                 if(index%2){
-                    html.push('<li class="message left"><img class="logo" src="/image/cy-admin.jpg" /><p>' + item +'</p></li >')
+                    html.push('<li class="message left"><img class="logo" src="/image/cy-admin2.jpg" /><p>' + item +'</p></li >')
                 }else{
-                    html.push(' <li class="message right"><img class="logo" src="/image/cy-admin2.jpg" /><p>'+item+'</p></li >')
+                    html.push(' <li class="message right"><img class="logo" src="/image/cy-admin.jpg" /><p>'+item+'</p></li >')
                 }
             });
             $('.chat').html(html.join(''))

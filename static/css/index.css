@@ -368,6 +368,17 @@ body .index-logo-src img{
 .fr-act{
     background:rgba(153,153,153,1) !important;
 }
+.cyjl-index{
+    position: absolute;
+    top:60px;
+    right: 0;
+    cursor: pointer;
+    animation: circel 1.667s linear infinite;
+}
+
+.cyjl-index img{
+    width:32px;
+}
 .cyjl{
     position: fixed;
     top:294px;
@@ -375,6 +386,7 @@ body .index-logo-src img{
     cursor: pointer;
     animation: circel 1.667s linear infinite;
 }
+
 .cyjl img{
     width:32px;
 }
@@ -749,6 +761,7 @@ body .index-logo-src img{
         right: 4px;
         bottom: 0;
         top: 150px;
+        display: none;
     }
     .sj-chat{
         right: 50px;
@@ -846,6 +859,7 @@ body .index-logo-src img{
         right: 4px;
         bottom: 0;
         top: 150px;
+        display: none;
     }
     .sj-chat{
         width: 280px;
