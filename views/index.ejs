@@ -84,6 +84,7 @@
         }
         let getCyData = function () {
             if (!reqFlag) return false
+            reqFlag = false
             const word = $('.text_input').val()
             let params = {
                 timestamp: (new Date()).valueOf()
@@ -121,13 +122,11 @@
         let reqFlag = true
         $('.text_input').keyup(function (e) {
             if (e.keyCode === 13) {
-                reqFlag = false
                 getCyData()
             }
         })
         $('#sumitcomment').click(function (e) {
             e.stopPropagation()
-            reqFlag = false
             getCyData()
         })
     })
