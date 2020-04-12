@@ -3,11 +3,6 @@ var router = express.Router();
 var indexObj = require('../models/index')
 var {wordData, wordsData, poemData, wordNote,songData,cyData} = require('./data')
 
-router.get("", async function (req, res) {
-    await res.render('index.ejs',{
-    });
-});
-
 router.get("/cyjl", async function(req, res){
     console.log('req.body++++', req.query)
     const resultData = await indexObj.getCyjl(req.query)

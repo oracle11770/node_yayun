@@ -58,17 +58,17 @@
     })();
     $(function () { 
         $.ajaxSetup({
-            cache: false
+            cache: true
         });
         $('#chatCls').click(function (e) {
             e.stopPropagation()
             $('.chat-container').removeClass('chat-show')
-            localStorage.clear()
+            sessionStorage.clear()
         })
         $('.cyjl-index').click(function (e) {
             e.stopPropagation()
             $('.chat-container').addClass('chat-show')
-            cyData = localStorage.getItem('cy-data') && localStorage.getItem('cy-data').split(',') || []
+            cyData = sessionStorage.getItem('cy-data') && sessionStorage.getItem('cy-data').split(',') || []
             updateCy()
         })
         let updateCy = function () {
@@ -97,15 +97,16 @@
                     type: "get",
                     url: '/cyjl',
                     dataType: 'json',
+                    "Content-type": "application/json; charset=utf-8",
                     data: params,
                     success: function (data) {
                         reqFlag = true
-                        cyData = localStorage.getItem('cy-data') && localStorage.getItem('cy-data').split(',') || []
+                        cyData = sessionStorage.getItem('cy-data') && sessionStorage.getItem('cy-data').split(',') || []
                         cyData.push(word)
                         cyData.push(data.data.res)
                         console.log(data.data.code, typeof data.data.code)
                         if (data.data.code === 200) {
-                            localStorage.setItem('cy-data', cyData.join(','))
+                            sessionStorage.setItem('cy-data', cyData.join(','))
                             $('.text_input').val('')
                         }
                         updateCy()
@@ -120,11 +121,13 @@
         let reqFlag = true
         $('.text_input').keyup(function (e) {
             if (e.keyCode === 13) {
+                reqFlag = false
                 getCyData()
             }
         })
         $('#sumitcomment').click(function (e) {
             e.stopPropagation()
+            reqFlag = false
             getCyData()
         })
     })
