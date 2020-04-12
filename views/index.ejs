@@ -85,7 +85,9 @@
         let getCyData = function () {
             if (!reqFlag) return false
             const word = $('.text_input').val()
-            let params = {}
+            let params = {
+                timestamp: (new Date()).valueOf()
+            }
             if (cyData[cyData.length - 1]) {
                 params.oldWord = cyData[cyData.length - 1]
             }
