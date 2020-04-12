@@ -101,12 +101,12 @@
        
     </div>
 
-    <div class="flr-bar sj-flr">
+    <!-- <div class="flr-bar sj-flr">
         <div class="fr-icon">^</div>
-    </div>
+    </div> -->
 
 
-    <div class="cyjl">
+    <!-- <div class="cyjl">
         <img src="/image/cyjl-icon.png" alt="">
     </div>
     <div class="chat-container sj-chat">
@@ -116,12 +116,12 @@
             <input type="text" class="text_input" placeholder="输入一个成语，回车键发送" />
             <a id="sumitcomment" href="javascript:" class="btn_com">发 送</a>
         </div>
-    </div>
+    </div> -->
 </body>
 <script>
     $(function(){ 
         $.ajaxSetup({
-            cache: true
+            cache: false
         });
         // $('#kw').keydown(function(e){
         //     var timer = ''
@@ -305,7 +305,7 @@
         //最上面的文字
         headText: "欢迎支持我们 ^_^",
         //侧边栏文本
-        siderText: "公告 & 帮助",
+        siderText: "公告 & 反馈",
         //侧边栏文本高度调整
         siderTextTop: "-72px",
         //侧边栏背景颜色
@@ -343,7 +343,7 @@
         **/
         list: {
             notice: { icon: "image/icon/tip.png", name: "公告栏", className: "myR-on", text: '公告内容:<br/>本网站免费' },
-            weixin: { icon: "image/icon/weixin.png", name: "微信", desc: "项目作者“明辉”\n加微信寻求帮助", qrimg: "image/qr/wxm.jpg" }
+            weixin: { icon: "image/icon/weixin.png", name: "微信", desc: "项目作者“明辉”\n加微信反馈支持", qrimg: "image/qr/wxm.jpg" }
         }
     };
 </script>
