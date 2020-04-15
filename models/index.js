@@ -98,7 +98,11 @@ module.exports = {
     getCyjl: async (params) => {
         let data = ''
         console.log('********************', params)
-        await axios.get(api + '/index/api/chengyu', { params }).then((res) => {
+        let url = api + '/index/api/chengyu'
+        if (!params.word){
+            url = api + '/index/api/rchengyu'
+        }
+        await axios.get(url, { params }).then((res) => {
             console.log('getCyjl', res.data)
             if (res.status === 200) {
                 data = res.data

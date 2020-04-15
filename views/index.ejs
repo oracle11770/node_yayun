@@ -68,16 +68,16 @@
         $('.cyjl-index').click(function (e) {
             e.stopPropagation()
             $('.chat-container').addClass('chat-show')
-            cyData = sessionStorage.getItem('cy-data') && sessionStorage.getItem('cy-data').split(',') || []
-            updateCy()
+            sessionStorage.clear()
+            getCyData()
         })
         let updateCy = function () {
             let html = []
             cyData.forEach((item, index) => {
                 if (index % 2) {
-                    html.push('<li class="message left"><img class="logo" src="/image/cy-admin2.jpg" /><p>' + item + '</p></li >')
+                    html.push('<li class="message left"><img class="logo" src="/image/cy-admin.jpg" /><p>' + item + '</p></li >')
                 } else {
-                    html.push(' <li class="message right"><img class="logo" src="/image/cy-admin.jpg" /><p>' + item + '</p></li >')
+                    html.push(' <li class="message right"><img class="logo" src="/image/cy-admin2.jpg" /><p>' + item + '</p></li >')
                 }
             });
             $('.chat').html(html.join(''))
