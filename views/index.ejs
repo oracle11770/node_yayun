@@ -75,9 +75,9 @@
             let html = []
             cyData.forEach((item, index) => {
                 if (index % 2) {
-                    html.push('<li class="message left"><img class="logo" src="/image/cy-admin2.jpg" /><p>' + item + '</p></li >')
+                    html.push('<li class="message left"><img class="logo" src="/image/cy-admin.jpg" /><p>' + item + '</p></li >')
                 } else {
-                    html.push(' <li class="message right"><img class="logo" src="/image/cy-admin.jpg" /><p>' + item + '</p></li >')
+                    html.push(' <li class="message right"><img class="logo" src="/image/cy-admin2.jpg" /><p>' + item + '</p></li >')
                 }
             });
             $('.chat').html(html.join(''))
@@ -104,7 +104,7 @@
                 success: function (data) {
                     reqFlag = true
                     cyData = sessionStorage.getItem('cy-data') && sessionStorage.getItem('cy-data').split(',') || []
-                    cyData.push(word)
+                    word&&cyData.push(word)
                     cyData.push(data.data.res)
                     console.log(data.data.code, typeof data.data.code)
                     if (data.data.code === 200) {
