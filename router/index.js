@@ -217,4 +217,14 @@ router.get("/query", async function (req, res) {
         });
     }
 });
+
+router.get("/help", async function(req, res){
+    await res.render('help.ejs',{})
+})
+router.get("/suggest", async function(req, res){
+    await res.render('suggest.ejs',{})
+})
+router.get("/concat", async function(req, res){
+    await res.render('concat.ejs',{})
+})
 module.exports = router

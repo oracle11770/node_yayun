@@ -27,6 +27,9 @@ body .index-logo-src img{
 *{
     box-sizing: border-box;
 }
+.container{
+    position: relative;
+}
 .yayunbox{
     height: 100%;
 }
@@ -74,6 +77,10 @@ body .index-logo-src img{
 }
 .yy-tbar a:hover{
     color:rgba(61,61,61,1);
+    /* border-bottom:3px solid rgba(204,151,86,1); */
+}
+.yy-tbar .cur-tbar{
+    color:rgba(61,61,61,1);
     border-bottom:3px solid rgba(204,151,86,1);
 }
 .yy-tbar a:nth-child(1){
@@ -88,9 +95,9 @@ body .index-logo-src img{
     height: 37px;
     overflow: hidden;
     color: #999;
-    zoom: 1;
     margin: 0;
-    margin-top:100px;
+    padding-top:169px;
+    padding-bottom: 70px;
 }
 .yy-b-part1{
     width: 100%;
@@ -284,6 +291,7 @@ body .index-logo-src img{
         font-family:Microsoft YaHei;
         font-weight:400;
         color:rgba(255,255,255,1);
+        cursor: pointer;
     }
     .query-btn img{
         width: 22px;
@@ -498,6 +506,65 @@ body .index-logo-src img{
         margin-left:-28px; 
         height: 116px;
         width: 112px;
+    }
+    .bg-left{
+       position: absolute;
+       top: 33.39%;
+       left: 0;
+       width:290px;
+       height: 368px;
+       overflow: hidden;
+       display: flex;
+       justify-content: flex-start;
+       align-items: flex-start;
+       z-index: -1;
+    }
+    .bg-left img:nth-child(1){
+        margin-left:-30px;
+        margin-top: 52px;
+        height: 316px;
+    }
+    .bg-left img:nth-child(2){
+        margin-left: -156px;
+        width:156px;
+        height: 156px;
+    }
+    .bg-right{
+        position: absolute;
+        top: 27.14%;
+        right: 0;
+        width: 195px;
+        height: 238px;
+        overflow: hidden;
+    }
+    .bg-right img{
+        width: 238px;
+    }
+    .bg-bottom{
+        position: absolute;
+        bottom:0;
+        left: 50%;
+        transform: translate(-50%,0);
+        width: 1052px;
+        height: 107px;
+        overflow-y: hidden;
+        text-align: left;
+    }
+    .bg-bottom img{
+        width: 156px;
+        height: 156px;
+    }
+    .bg-bottom2{
+        position: absolute;
+        bottom:0;
+        right: 0;
+        width: 829px;
+        height: 343px;
+        overflow: hidden;
+        z-index:-1;
+    }
+    .bg-bottom2 img{
+        width: 829px;
     }
     #kw {
         width: 500px;

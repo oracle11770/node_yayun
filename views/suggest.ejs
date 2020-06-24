@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>押韵_帮助</title>
+    <link rel="icon" href="//51rhyme.com/image/favicon.ico" >
+    <link rel="stylesheet"  href="/css/index.css"/>
+    <link rel="stylesheet"  href="/css/suggest.css"/>
+    <script src="/js/libs/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <%- include('mixin/header'); %>
+    <div class="suggest-main">
+        <div class="suggest-left">
+            
+        </div>
+        <div class="suggest-cnt">
+
+        </div>
+    </div>
+    <%- include('mixin/footer'); %>
+  </div>
+  <script>
+      $(document).ready(function () {
+          $('#suggestId').toggleClass('cur-tbar')
+      });
+  </script>
+</body>
+</html>

@@ -10,20 +10,8 @@
     <script src="/js/index.js"></script>
 </head>
 <body>
-    <div class="yayun-header">
-        <div class="yy-header_box">
-            <div>
-                <img class="head-img" src="/image/index/51logo_head.png" alt="">
-            </div>
-            <div class="yy-tbar">
-                <a href="/" rel="noopener noreferrer">首页</a>
-                <a href="http://" target="_blank" rel="noopener noreferrer">帮助</a>
-                <a href="http://" target="_blank" rel="noopener noreferrer">功能建议</a>
-                <a href="http://" target="_blank" rel="noopener noreferrer">联系我们</a>
-            </div>
-            <div></div>
-        </div>
-    </div>
+  <div class="container">
+    <%- include('mixin/header'); %>
     <div class="yayunCnt">
         <div class="yayunbox">
             <img id="yayunLogo" hidefocus="true" class="logoImg" src="/image/index/51logo.png" semap="#mp">
@@ -76,15 +64,23 @@
             </div>
         </div>
     </div>
-    <div class="yy-footer">
-        <div class="yy-b-part1"> 
-            <p class="c_txt">
-                © 2019 <a href="//51rhyme.com" target="_blank">51rhyme.com</a> 京ICP备19049395号
-            <a href="//www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502039319"
-                target="_blank">京公网安备  11010502039319号<i></i></a> 
-            </p>
-        </div>
+    <%- include('mixin/footer'); %>
+    <!-- 局部悬浮背景 -->
+    <div class="bg-left">
+        <img src="/image/index/bg_left1.png" alt="" srcset="">
+        <img src="/image/index/bg_left2.png" alt="" srcset="">
     </div>
+    <div class="bg-right">
+        <img src="/image/index/bg_right.png" alt="" srcset="">
+    </div>
+    <div class="bg-bottom">
+        <img src="/image/index/bg_right.png" alt="" srcset="">
+    </div>
+    <div class="bg-bottom2">
+        <img src="/image/index/bg_bottom.png" alt="" srcset="">
+    </div>
+    <!-- 局部悬浮背景 -->
+  <div>
 </body>
 <script>
     var _hmt = _hmt || [];
@@ -94,5 +90,8 @@
         var s = document.getElementsByTagName("script")[0]; 
         s.parentNode.insertBefore(hm, s);
     })();
+    $(document).ready(function () {
+        $('#indexId').toggleClass('cur-tbar')
+    });
 </script>
 </html>
